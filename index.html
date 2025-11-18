@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Laura Navasardian | Cello</title>
+    <meta name="description" content="Avant-garde classical cellist Laura Navasardian.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,900;1,6..96,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#EAE5D9',
+                        'ink': '#1C1C1B',
+                        'oxblood': '#541812',
+                        'stone': '#8C8A86',
+                    },
+                    fontFamily: {
+                        serif: ['"Bodoni Moda"', 'serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    },
+                    fontSize: {
+                        'huge': 'clamp(3rem, 14vw, 16rem)', 
+                    },
+                    backgroundImage: {
+                        'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Universal Mobile Fixes */
+        html, body {
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grain Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            background-image: var(--tw-bg-grain);
+            mix-blend-mode: multiply;
+        }
+
+        /* Desktop Cursor (Only on devices with a mouse) */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            #cursor { display: block; }
+        }
+
+        /* Mobile Defaults (Reset cursor) */
+        @media (pointer: coarse) {
+            body { cursor: auto; }
+            #cursor { display: none !important; }
+            .hover-trigger:active { opacity: 0.7; } /* Tap feedback */
+        }
+
+        /* Custom Cursor Styling */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #1C1C1B;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+            display: none; /* Hidden by default, enabled via media query */
+        }
+        #cursor.hovered {
+            width: 60px;
+            height: 60px;
+            background-color: #EAE5D9;
+        }
+
+        /* Typography */
+        .font-serif { font-feature-settings: "ordn", "liga", "dlig"; }
+        
+        /* Reveal Animation */
+        .reveal-text { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+        .reveal-text > span {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .is-visible .reveal-text > span { transform: translateY(0); }
+
+        /* Marquee */
+        .marquee-container { overflow: hidden; white-space: nowrap; display: flex; }
+        .marquee-content {
+            flex-shrink: 0;
+            animation: marquee 20s linear infinite;
+        }
+        /* Slower animation on mobile to prevent dizziness */
+        @media (max-width: 768px) {
+            .marquee-content { animation-duration: 15s; }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Mobile Menu Animation */
+        #nav-overlay {
+            height: 100dvh; /* Use dynamic viewport height */
+        }
+
+        /* Header Scroll Effect */
+        #main-header {
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            background-color: transparent;
+            border-bottom: 1px solid transparent;
+        }
+        #main-header.scrolled {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(28, 28, 27, 0.3);
+            border-bottom: 1px solid rgba(234, 229, 217, 0.05);
+        }
+        #main-header.scrolled a,
+        #main-header.scrolled button {
+            color: #EAE5D9;
+        }
+
+        /* Hamburger Icon */
+        .hamburger {
+            width: 24px;
+            height: 18px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body class="antialiased bg-paper text-ink selection:bg-oxblood selection:text-paper">
+
+    <!-- Texture -->
+    <div class="grain-overlay"></div>
+
+    <!-- Custom Cursor (Desktop Only) -->
+    <div id="cursor"></div>
+
+    <!-- Mobile Sticky Header -->
+    <div id="main-header" class="fixed top-0 left-0 w-full px-6 md:px-8 py-4 md:py-5 z-50 flex justify-between items-center pointer-events-none transition-all duration-500">
+        <a href="#" class="font-mono text-sm md:text-base font-medium tracking-wide uppercase pointer-events-auto hover:tracking-wider transition-all text-paper">Laura Navasardian</a>
+
+        <!-- Desktop Menu (Hidden on mobile) -->
+        <nav class="hidden md:flex gap-6 lg:gap-8 pointer-events-auto">
+            <a href="#bio" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Biography</a>
+            <a href="#news" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Journal</a>
+            <a href="#agenda" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Agenda</a>
+            <a href="#repertoire" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Repertoire</a>
+            <a href="#contact" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Contact</a>
+        </nav>
+
+        <!-- Hamburger Menu (Visible on mobile only) -->
+        <button id="menu-btn" class="md:hidden pointer-events-auto p-2 transition-all active:scale-95 hover-trigger text-paper">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Navigation Overlay -->
+    <nav id="nav-overlay" class="fixed inset-0 bg-ink z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center">
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="#bio" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">Biography</a>
+            <a href="#news" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Journal</a>
+            <a href="#agenda" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Agenda</a>
+            <a href="#repertoire" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Repertoire</a>
+            <a href="#contact" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Contact</a>
+        </div>
+        
+        <!-- Mobile Nav Footer -->
+        <div class="absolute bottom-10 text-stone font-mono text-[10px] uppercase tracking-widest">
+            © 2025 Laura Navasardian
+        </div>
+    </nav>
+
+    <main class="relative w-full">
+        
+        <!-- HERO SECTION (Mobile Optimized) -->
+        <section class="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden">
+            
+            <!-- Background: Video with Smart Fallback -->
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <!-- Video (All Devices) - Extra height for parallax -->
+                <video id="hero-video" autoplay loop muted playsinline preload="metadata" class="object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none" style="will-change: transform;">
+                    <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+                </video>
+                <!-- Fallback Image (Hidden by default, shown if video fails) -->
+                <img id="hero-fallback" src="assets/images/laura1.jpg" class="hidden object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none" alt="Background" style="will-change: transform;">
+                <!-- Dark overlay (only affects light areas) -->
+                <div class="absolute inset-0 bg-ink/25 pointer-events-none" style="mix-blend-mode: multiply;"></div>
+            </div>
+
+            <!-- Right Aligned Text (1/3 from top) -->
+            <div data-scroll-blur class="absolute top-[33vh] right-6 md:right-16 z-20 text-right" style="will-change: filter;">
+                <div class="space-y-2 md:space-y-3">
+                    <p class="font-mono text-xl md:text-3xl lg:text-4xl font-light tracking-[0.25em] uppercase text-paper">Laura Navasardian</p>
+                    <p class="font-mono text-base md:text-xl lg:text-2xl font-light tracking-[0.35em] uppercase text-paper/70">Cellist</p>
+                </div>
+                <div class="w-16 md:w-24 h-[1px] bg-paper/30 mt-6 ml-auto"></div>
+            </div>
+
+            <div id="hero-text" data-scroll-blur class="relative z-10 w-full px-4" style="will-change: filter;">
+                <div class="flex flex-col items-center mix-blend-multiply">
+                    <div class="reveal-text overflow-hidden w-full text-center">
+                        <h1 class="font-serif font-black text-[18vw] md:text-[13vw] leading-none tracking-tighter text-ink">
+                            LAURA
+                        </h1>
+                    </div>
+                    <div class="reveal-text overflow-hidden w-full text-center -mt-2 md:-mt-8">
+                        <!-- Break-all ensures extremely long name fits on tiny screens -->
+                        <h1 class="font-serif font-italic font-normal text-[11vw] md:text-[13vw] leading-none tracking-tighter text-oxblood md:ml-32">
+                            NAVASARDIAN
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-12 flex flex-col items-center gap-4 z-20">
+                <p class="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-paper">Scroll</p>
+                <div class="h-12 w-[1px] bg-paper/40"></div>
+            </div>
+        </section>
+
+        <!-- BIOGRAPHY -->
+        <section id="bio" class="relative py-20 md:py-32 w-full border-t border-ink/10">
+            <div class="container mx-auto px-6 md:px-12 relative z-10">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <!-- Text -->
+                    <div class="md:w-5/12 md:pr-12 pt-6">
+                        <span class="font-mono text-[10px] text-oxblood uppercase tracking-widest mb-4 block">01 — The Artist</span>
+                        <h2 class="font-serif text-4xl md:text-6xl leading-[1.1] mb-6 reveal-trigger">
+                            Sculpting time <br><span class="italic text-stone">through silence.</span>
+                        </h2>
+                        <p class="font-mono text-sm leading-relaxed text-gray-600 text-justify">
+                            Laura Navasardian reimagines the classical canon through a lens of modernist austerity and romantic depth. Performing on a 1732 Montagnana, she brings a guttural resonance to stages from Berlin to New York.
+                        </p>
+                        <a href="#" class="inline-block mt-6 border-b border-ink pb-1 text-xs uppercase tracking-widest hover-trigger">Read Biography</a>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="md:w-7/12 relative mt-8 md:mt-0">
+                        <div class="aspect-[4/5] w-full md:w-4/5 ml-auto bg-gray-200">
+                            <img src="assets/images/laura1.jpg" class="w-full h-full object-cover grayscale md:hover:grayscale-0 transition-all duration-700">
+                        </div>
+                        <!-- Caption: Moved to static relative for mobile to prevent overlap -->
+                        <div class="relative md:absolute -mt-8 md:-mt-0 md:-bottom-6 md:-left-6 bg-oxblood text-paper p-6 max-w-[80%] md:max-w-xs mx-auto md:mx-0 shadow-xl">
+                            <p class="font-serif italic text-lg leading-none">"A phenomenon of rare intensity."</p>
+                            <span class="font-mono text-[10px] mt-2 block uppercase opacity-70">NY Times</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGENDA (Mobile: Card Style) -->
+        <section id="agenda" class="py-24 relative bg-paper">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex items-baseline justify-between mb-12">
+                    <h2 class="font-serif text-5xl italic">Agenda</h2>
+                    <span class="font-mono text-[10px] text-oxblood uppercase tracking-widest">Season 24/25</span>
+                </div>
+
+                <div class="flex flex-col border-t border-ink">
+                    <!-- Mobile: Image is shown inline. Desktop: Image is hidden and shown on hover -->
+                    
+                    <!-- Event 1 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <!-- Mobile Image (Visible) -->
+                        <div class="md:hidden w-full h-48 mb-6 overflow-hidden">
+                             <img src="assets/images/LauraBach_3.jpg" class="w-full h-full object-cover grayscale">
+                        </div>
+
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-xs text-gray-500 mb-2 md:mb-0">NOV 12, 2024</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl group-hover:italic transition-all">Vienna Musikverein</h3>
+                                <p class="font-mono text-xs mt-1 text-stone">Dvořák Cello Concerto</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">TICKETS</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Hover Image -->
+                        <img src="assets/images/LauraBach_3.jpg" class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-40 object-cover opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 grayscale rotate-3 z-20 border border-paper">
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-xs text-gray-500 mb-2 md:mb-0">DEC 05, 2024</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl group-hover:italic transition-all">Wigmore Hall</h3>
+                                <p class="font-mono text-xs mt-1 text-stone">Solo Recital: Bach Suites</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button class="font-mono text-[10px] border border-ink/30 text-stone px-6 py-2 rounded-full cursor-not-allowed">SOLD OUT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEDIA & REPERTOIRE (Stacked on Mobile) -->
+        <section id="media" class="flex flex-col-reverse md:flex-row border-t border-ink">
+            
+            <!-- Repertoire -->
+            <div class="w-full md:w-1/2 p-8 md:p-24 bg-paper border-t md:border-t-0 md:border-r border-ink">
+                <span class="font-mono text-[10px] text-oxblood uppercase tracking-widest mb-8 block">04 — Repertoire</span>
+                <div class="grid grid-cols-1 gap-12">
+                    <div>
+                        <h3 class="font-serif text-xl italic mb-4 border-b border-ink/20 pb-2 inline-block">Concertos</h3>
+                        <ul class="font-mono text-xs md:text-sm space-y-3 text-gray-600 uppercase tracking-wide">
+                            <li>Elgar — E Minor</li>
+                            <li>Dvořák — B Minor</li>
+                            <li>Shostakovich — No. 1</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl italic mb-4 border-b border-ink/20 pb-2 inline-block">Sonatas</h3>
+                        <ul class="font-mono text-xs md:text-sm space-y-3 text-gray-600 uppercase tracking-wide">
+                            <li>Beethoven — No. 3 in A</li>
+                            <li>Brahms — No. 1 in E min</li>
+                            <li>Debussy — D Minor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Media Gallery -->
+            <div class="w-full md:w-1/2 bg-ink text-paper p-8 md:p-24">
+                <div class="flex justify-between mb-8">
+                     <span class="font-mono text-[10px] text-stone uppercase tracking-widest">05 — Media</span>
+                </div>
+                
+                <!-- Mobile: Single Column, Desktop: Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="aspect-square bg-stone/20 overflow-hidden">
+                        <img src="assets/images/LauraBach_8.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale">
+                    </div>
+                    <div class="aspect-[3/4] bg-stone/20 overflow-hidden md:translate-y-12">
+                        <img src="assets/images/LauraBach_3.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <section class="py-8 md:py-12 border-y border-ink bg-oxblood text-paper overflow-hidden">
+            <div class="marquee-container">
+                <div class="marquee-content flex items-center">
+                     <span class="font-serif text-4xl md:text-8xl italic px-4">"A MUSICIAN OF RARE DEPTH." — THE NEW YORK TIMES</span>
+                     <span class="font-serif text-4xl md:text-8xl italic px-4">"SCULPTING TIME." — LE MONDE</span>
+                </div>
+                <div class="marquee-content flex items-center" aria-hidden="true">
+                    <span class="font-serif text-4xl md:text-8xl italic px-4">"A MUSICIAN OF RARE DEPTH." — THE NEW YORK TIMES</span>
+                    <span class="font-serif text-4xl md:text-8xl italic px-4">"SCULPTING TIME." — LE MONDE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer id="contact" class="relative bg-paper pt-20 pb-12 overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12 relative z-10">
+                <div class="flex flex-col gap-16">
+                    <div>
+                        <h2 class="font-serif text-5xl md:text-8xl leading-none mb-8 text-ink">
+                            Let's create <br><span class="italic text-oxblood">resonance.</span>
+                        </h2>
+                        <div class="space-y-6">
+                            <a href="#" class="block font-serif text-xl md:text-2xl hover:text-oxblood">HarrisonParrott &nearr;</a>
+                            <a href="mailto:contact@laura.com" class="block font-serif text-xl md:text-2xl hover:text-oxblood">contact@laura.com &nearr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Optimized Socials -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="h-12 px-8 border border-ink rounded-full flex items-center justify-center font-mono text-[10px] uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">Instagram</a>
+                        <a href="#" class="h-12 px-8 border border-ink rounded-full flex items-center justify-center font-mono text-[10px] uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">Spotify</a>
+                    </div>
+                    
+                    <p class="font-mono text-[10px] text-stone uppercase mt-8">
+                        &copy; 2025 Laura Navasardian.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Header Scroll Background Effect
+        const mainHeader = document.getElementById('main-header');
+        let headerScrolled = false;
+
+        function updateHeaderBackground() {
+            const scrollPosition = window.scrollY;
+            const heroHeight = window.innerHeight; // 100vh
+            const triggerPoint = heroHeight * 0.75; // 75% down the hero
+            const shouldBeScrolled = scrollPosition > triggerPoint;
+
+            if (shouldBeScrolled && !headerScrolled) {
+                mainHeader.classList.add('scrolled');
+                headerScrolled = true;
+            } else if (!shouldBeScrolled && headerScrolled) {
+                mainHeader.classList.remove('scrolled');
+                headerScrolled = false;
+            }
+        }
+
+        window.addEventListener('scroll', updateHeaderBackground, { passive: true });
+
+        // Hero Video Fallback Detection
+        const heroVideo = document.getElementById('hero-video');
+        const heroFallback = document.getElementById('hero-fallback');
+        let videoPlaybackAttempted = false;
+
+        // Detect if video fails to play
+        heroVideo.addEventListener('error', () => {
+            heroVideo.classList.add('hidden');
+            heroFallback.classList.remove('hidden');
+        });
+
+        // Set timeout - if video doesn't play within 3 seconds, show fallback
+        setTimeout(() => {
+            if (heroVideo.paused && !videoPlaybackAttempted) {
+                heroVideo.classList.add('hidden');
+                heroFallback.classList.remove('hidden');
+            }
+        }, 3000);
+
+        // Track successful playback
+        heroVideo.addEventListener('playing', () => {
+            videoPlaybackAttempted = true;
+        });
+
+        // Attempt to play (handles browsers that block autoplay)
+        heroVideo.play().catch(() => {
+            heroVideo.classList.add('hidden');
+            heroFallback.classList.remove('hidden');
+        });
+
+        // Custom Cursor Logic (Safe for Mobile)
+        const cursor = document.getElementById('cursor');
+        const triggers = document.querySelectorAll('.hover-trigger');
+        const isMobile = window.matchMedia("(pointer: coarse)").matches;
+
+        if (!isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            triggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            });
+        }
+
+        // Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const navOverlay = document.getElementById('nav-overlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const hamburger = menuBtn.querySelector('.hamburger');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+
+            if(isMenuOpen) {
+                navOverlay.classList.remove('translate-y-full');
+                hamburger.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // Staggered Animation for links
+                navLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('opacity-0', 'translate-y-10');
+                    }, 100 + (index * 100));
+                });
+
+            } else {
+                navOverlay.classList.add('translate-y-full');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = 'auto';
+
+                navLinks.forEach(link => {
+                    link.classList.add('opacity-0', 'translate-y-10');
+                });
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        navLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Hero Video Parallax & Blur Effect
+        let ticking = false;
+        const heroBlurTargets = document.querySelectorAll('[data-scroll-blur]');
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.relative.h-\\[100dvh\\]');
+
+            if (heroSection) {
+                const heroBottom = heroSection.offsetHeight;
+
+                // Only apply effects while hero is in view
+                if (scrolled < heroBottom) {
+                    const parallaxSpeed = 0.5; // Adjust for more/less effect
+                    const yPos = scrolled * parallaxSpeed;
+
+                    // Calculate blur amount - starts at 20% scroll progress
+                    const scrollProgress = scrolled / heroBottom;
+                    const blurStart = 0.2; // Start blur at 20% down
+                    const blurAmount = scrollProgress > blurStart
+                        ? ((scrollProgress - blurStart) / (1 - blurStart)) * 20
+                        : 0;
+
+                    const maxZoom = 0.08; // 8% zoom at bottom of hero
+                    const scale = 1 + (scrollProgress * maxZoom);
+
+                    heroVideo.style.transform = `translateY(${yPos}px) scale(${scale})`;
+                    heroVideo.style.filter = `blur(${blurAmount}px)`;
+
+                    if (!heroFallback.classList.contains('hidden')) {
+                        heroFallback.style.transform = `translateY(${yPos}px) scale(${scale})`;
+                        heroFallback.style.filter = `blur(${blurAmount}px)`;
+                    }
+
+                    // Apply blur to hero text container
+                    heroBlurTargets.forEach(target => {
+                        target.style.filter = `blur(${blurAmount}px)`;
+                    });
+                }
+            }
+
+            ticking = false;
+        }
+
+        function requestParallaxUpdate() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+        // Simple Reveal on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-text').forEach(el => {
+            if(!el.querySelector('span')) {
+                const text = el.textContent;
+                el.innerHTML = `<span>${text}</span>`;
+            }
+            observer.observe(el);
+        });
+
+    </script>
+</body>
+</html>
