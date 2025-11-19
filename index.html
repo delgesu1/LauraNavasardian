@@ -9,7 +9,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,900;1,6..96,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,7 +26,7 @@
                         'stone': '#8C8A86',
                     },
                     fontFamily: {
-                        serif: ['"Bodoni Moda"', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
                         mono: ['"Space Grotesk"', 'monospace'],
                     },
                     fontSize: {
@@ -46,6 +48,20 @@
             width: 100%;
             -webkit-font-smoothing: antialiased;
         }
+        body {
+            font-family: 'Space Grotesk', 'monospace';
+        }
+
+        :root {
+            --charcoal: #1c1c1c;
+            --charcoal-light: #2a2a2a;
+            --burgundy: #750d37;
+            --burgundy-light: #9b1b4d;
+            --gold: #d4af37;
+            --gold-light: #f0d077;
+            --cream: #f8f5f0;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
         /* Grain Overlay */
         .grain-overlay {
@@ -60,43 +76,21 @@
             mix-blend-mode: multiply;
         }
 
-        /* Desktop Cursor (Only on devices with a mouse) */
-        @media (pointer: fine) {
-            body { cursor: none; }
-            #cursor { display: block; }
-        }
-
-        /* Mobile Defaults (Reset cursor) */
+        /* Mobile Defaults (Tap Feedback) */
         @media (pointer: coarse) {
-            body { cursor: auto; }
-            #cursor { display: none !important; }
             .hover-trigger:active { opacity: 0.7; } /* Tap feedback */
         }
 
-        /* Custom Cursor Styling */
-        #cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            border: 1px solid #1C1C1B;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: difference;
-            display: none; /* Hidden by default, enabled via media query */
-        }
-        #cursor.hovered {
-            width: 60px;
-            height: 60px;
-            background-color: #EAE5D9;
-        }
-
         /* Typography */
-        .font-serif { font-feature-settings: "ordn", "liga", "dlig"; }
+        .font-serif { 
+            font-feature-settings: "ordn", "liga", "dlig"; 
+        }
+        blockquote,
+        .pull-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            letter-spacing: 0.02em;
+        }
         
         /* Reveal Animation */
         .reveal-text { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
@@ -172,15 +166,760 @@
         .hamburger.active span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }
-    </style>
+
+/* Shared Section Styling */
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    color: var(--cream);
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 1px;
+    background-color: var(--gold);
+}
+
+/* Biography */
+.biography {
+    padding: 10rem 5%;
+    background-color: var(--charcoal-light);
+    color: var(--cream);
+}
+.biography-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4rem;
+    margin-top: 4rem;
+}
+.bio-image {
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.bio-image::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gold);
+    z-index: -1;
+    transition: var(--transition);
+}
+.bio-image:hover::after {
+    top: 10px;
+    left: -10px;
+}
+.bio-text {
+    position: relative;
+}
+.bio-paragraph {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: rgba(248, 245, 240, 0.9);
+}
+.bio-paragraph.large {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    color: var(--gold-light);
+    margin: 2.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+.pull-quote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--gold);
+}
+.signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 3rem;
+}
+
+/* Repertoire */
+.repertoire {
+    padding: 10rem 5%;
+    background-color: var(--charcoal);
+    color: var(--cream);
+}
+.repertoire-container {
+    margin-top: 5rem;
+}
+.repertoire-category {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 0;
+}
+.category-header::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: calc(100% + 4px);
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    z-index: -1;
+}
+.category-header:hover::before {
+    background-color: rgba(212, 175, 55, 0.08);
+}
+.category-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+}
+.category-toggle-icon {
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 0.4s ease;
+}
+.repertoire-category.open .category-toggle-icon {
+    transform: rotate(180deg);
+}
+.repertoire-list {
+    max-height: 0;
+    overflow: hidden;
+    background-color: rgba(212, 175, 55, 0.02);
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0 1rem;
+}
+.repertoire-category.open .repertoire-list {
+    max-height: 1000px;
+    padding: 1.5rem 1rem;
+}
+.repertoire-item {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+.repertoire-item:last-child {
+    border-bottom: none;
+}
+.repertoire-composer {
+    font-weight: 500;
+    color: var(--cream);
+}
+.repertoire-piece {
+    font-style: italic;
+    color: rgba(248, 245, 240, 0.8);
+}
+
+/* Latest Section (Agenda Extension) */
+        .latest-section {
+            margin-top: 6rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(28, 28, 27, 0.1);
+        }
+        .latest-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 180px;
+            gap: 1.5rem;
+        }
+        .latest-card {
+            position: relative;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(28, 28, 27, 0.08);
+            background-color: #fdfaf4;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: var(--ink);
+            grid-column: span 2;
+            grid-row: span 1;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            min-height: 220px;
+        }
+        .latest-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(28, 28, 27, 0.12);
+        }
+        .latest-card--hero {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+        .latest-card--tall {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .latest-card--wide {
+            grid-column: span 3;
+        }
+        .latest-card--image {
+            color: var(--cream);
+        }
+        .latest-card--image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: var(--card-image);
+            background-size: cover;
+            background-position: center;
+            filter: saturate(1.1);
+            transition: transform 0.5s ease;
+        }
+        .latest-card--image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(12, 12, 12, 0.8) 0%, rgba(12, 12, 12, 0.05) 100%);
+        }
+        .latest-card--image:hover::before {
+            transform: scale(1.05);
+        }
+        .latest-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        .latest-card-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .latest-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+        .latest-card-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            color: rgba(28, 28, 27, 0.8);
+        }
+        .latest-card--image .latest-card-text {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .latest-card-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .latest-card-link::after {
+            content: '↗';
+            font-size: 1rem;
+        }
+        @media (max-width: 1024px) {
+            .latest-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: auto;
+            }
+            .latest-card,
+            .latest-card--hero,
+            .latest-card--tall,
+            .latest-card--wide {
+                grid-column: span 2;
+                grid-row: auto;
+                min-height: 240px;
+            }
+        }
+        @media (max-width: 640px) {
+            .latest-grid {
+                grid-template-columns: 1fr;
+            }
+            .latest-card,
+            .latest-card--hero,
+            .latest-card--tall,
+            .latest-card--wide {
+                grid-column: span 1;
+            }
+        }
+
+/* Media */
+        .gallery {
+            padding: 10rem 5% 5rem;
+            background-color: #EAE5D9;
+            color: var(--ink);
+            position: relative;
+        }
+        .gallery .section-title {
+            color: var(--ink);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 20px;
+            height: 80vh;
+            margin-top: 5rem;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item:nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 3; }
+        .gallery-item:nth-child(2) { grid-column: 7 / 10; grid-row: 1 / 2; }
+        .gallery-item:nth-child(3) { grid-column: 10 / 13; grid-row: 1 / 2; }
+        .gallery-item:nth-child(4) { grid-column: 7 / 13; grid-row: 2 / 3; }
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(28, 28, 28, 0.8), rgba(28, 28, 28, 0));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: var(--cream);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease 0.1s;
+        }
+        .gallery-item:hover .gallery-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .gallery-desc {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+        }
+        .gallery-item:hover .gallery-desc {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .view-more {
+            display: inline-block;
+            margin-top: 3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            position: relative;
+        }
+        .view-more::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        .view-more:hover {
+            color: var(--gold-light);
+        }
+        .view-more:hover::after {
+            width: 0;
+        }
+
+/* Press */
+.press {
+    padding: 10rem 5%;
+    background-color: var(--charcoal-light);
+    color: var(--cream);
+}
+.reviews {
+    margin-top: 5rem;
+}
+.review {
+    margin-bottom: 5rem;
+}
+.review-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--cream);
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+.review-quote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.5;
+}
+.review-source {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.press-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+}
+        .press-logo {
+            margin: 2rem;
+            opacity: 0.6;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+        .press-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+/* Contact */
+.contact {
+    padding: 10rem 5%;
+    background-color: var(--charcoal);
+    color: var(--cream);
+}
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4rem;
+    margin-top: 5rem;
+}
+.contact-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(248, 245, 240, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+}
+.contact-info-text span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+}
+.contact-info-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(248, 245, 240, 0.8);
+    line-height: 1.6;
+}
+.contact-info-text a {
+    color: inherit;
+    border-bottom: 1px solid rgba(248, 245, 240, 0.3);
+}
+.social-icons {
+    display: flex;
+    margin-top: 2rem;
+}
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(248, 245, 240, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    margin-right: 1rem;
+    transition: var(--transition);
+}
+.social-icon:hover {
+    color: var(--gold);
+    transform: translateY(-3px);
+}
+.contact-form {
+    background-color: var(--charcoal-light);
+    padding: 3rem;
+    border: 1px solid rgba(248, 245, 240, 0.1);
+}
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+.form-control {
+    width: 100%;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(248, 245, 240, 0.3);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    color: var(--cream);
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+.form-label {
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    color: rgba(248, 245, 240, 0.5);
+    pointer-events: none;
+    transition: var(--transition);
+}
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: var(--gold);
+}
+textarea.form-control {
+    min-height: 120px;
+    resize: none;
+}
+.submit-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid var(--gold);
+    background-color: transparent;
+    color: var(--gold);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gold);
+    transition: var(--transition);
+    z-index: -1;
+}
+.submit-btn:hover {
+    color: var(--charcoal);
+}
+.submit-btn:hover::before {
+    left: 0;
+}
+
+/* Footer */
+.footer {
+    padding: 5rem 5% 2rem;
+    background-color: var(--charcoal-light);
+    color: var(--cream);
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(248, 245, 240, 0.1);
+}
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+}
+.footer-nav {
+    display: flex;
+}
+.footer-nav-link {
+    margin-left: 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--cream);
+    transition: var(--transition);
+}
+.footer-nav-link:hover {
+    color: var(--gold);
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+}
+.copyright,
+.credits {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(248, 245, 240, 0.5);
+}
+
+/* Responsive tweaks */
+@media (max-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(3, auto);
+        height: auto;
+    }
+    .gallery-item:nth-child(1) {
+        grid-column: 1 / 13;
+        grid-row: 1 / 2;
+    }
+    .gallery-item:nth-child(2) {
+        grid-column: 1 / 7;
+        grid-row: 2 / 3;
+    }
+    .gallery-item:nth-child(3) {
+        grid-column: 7 / 13;
+        grid-row: 2 / 3;
+    }
+    .gallery-item:nth-child(4) {
+        grid-column: 1 / 13;
+        grid-row: 3 / 4;
+    }
+    .gallery-item {
+        height: auto;
+    }
+    .gallery-image {
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
+}
+@media (max-width: 992px) {
+    .biography-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        grid-gap: 3rem;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-nav {
+        margin-top: 2rem;
+        justify-content: center;
+    }
+    .footer-nav-link {
+        margin: 0 1rem;
+    }
+}
+@media (max-width: 981px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 40vh;
+        grid-gap: 1rem;
+        height: auto;
+        margin-top: 2rem;
+    }
+    .gallery-item {
+        height: 40vh;
+    }
+    .gallery {
+        padding: 5rem 8% 3rem;
+    }
+}
+@media (max-width: 768px) {
+    .biography,
+    .repertoire,
+    .press,
+    .contact {
+        padding: 5rem 8% 3rem;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .contact-form {
+        padding: 2rem;
+    }
+    .social-icons {
+        justify-content: flex-start;
+    }
+}
+</style>
 </head>
 <body class="antialiased bg-paper text-ink selection:bg-oxblood selection:text-paper">
 
     <!-- Texture -->
     <div class="grain-overlay"></div>
-
-    <!-- Custom Cursor (Desktop Only) -->
-    <div id="cursor"></div>
 
     <!-- Mobile Sticky Header -->
     <div id="main-header" class="fixed top-0 left-0 w-full px-6 md:px-8 py-4 md:py-5 z-50 flex justify-between items-center pointer-events-none transition-all duration-500">
@@ -188,10 +927,11 @@
 
         <!-- Desktop Menu (Hidden on mobile) -->
         <nav class="hidden md:flex gap-6 lg:gap-8 pointer-events-auto">
-            <a href="#bio" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Biography</a>
-            <a href="#news" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Journal</a>
+            <a href="#biography" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">About</a>
             <a href="#agenda" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Agenda</a>
             <a href="#repertoire" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Repertoire</a>
+            <a href="#gallery" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Media</a>
+            <a href="#press" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Press</a>
             <a href="#contact" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Contact</a>
         </nav>
 
@@ -208,11 +948,12 @@
     <!-- Navigation Overlay -->
     <nav id="nav-overlay" class="fixed inset-0 bg-ink z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center">
         <div class="flex flex-col space-y-6 text-center">
-            <a href="#bio" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">Biography</a>
-            <a href="#news" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Journal</a>
-            <a href="#agenda" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Agenda</a>
-            <a href="#repertoire" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Repertoire</a>
-            <a href="#contact" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Contact</a>
+            <a href="#biography" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">About</a>
+            <a href="#agenda" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Agenda</a>
+            <a href="#repertoire" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Repertoire</a>
+            <a href="#gallery" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Media</a>
+            <a href="#press" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Press</a>
+            <a href="#contact" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-600">Contact</a>
         </div>
         
         <!-- Mobile Nav Footer -->
@@ -269,33 +1010,28 @@
             </div>
         </section>
 
-        <!-- BIOGRAPHY -->
-        <section id="bio" class="relative py-20 md:py-32 w-full border-t border-ink/10">
-            <div class="container mx-auto px-6 md:px-12 relative z-10">
-                <div class="flex flex-col md:flex-row gap-12">
-                    <!-- Text -->
-                    <div class="md:w-5/12 md:pr-12 pt-6">
-                        <span class="font-mono text-[10px] text-oxblood uppercase tracking-widest mb-4 block">01 — The Artist</span>
-                        <h2 class="font-serif text-4xl md:text-6xl leading-[1.1] mb-6 reveal-trigger">
-                            Sculpting time <br><span class="italic text-stone">through silence.</span>
-                        </h2>
-                        <p class="font-mono text-sm leading-relaxed text-gray-600 text-justify">
-                            Laura Navasardian reimagines the classical canon through a lens of modernist austerity and romantic depth. Performing on a 1732 Montagnana, she brings a guttural resonance to stages from Berlin to New York.
-                        </p>
-                        <a href="#" class="inline-block mt-6 border-b border-ink pb-1 text-xs uppercase tracking-widest hover-trigger">Read Biography</a>
+        <!-- ABOUT -->
+        <section id="biography" class="biography">
+            <h3 class="section-title" data-aos="fade-up">About</h3>
+            <div class="biography-content">
+                <div class="bio-image" data-aos="fade-right" style="background-image: url('assets/images/LauraBach_8.jpg');"></div>
+                <div class="bio-text" data-aos="fade-left">
+                    <p class="bio-paragraph large">
+                        Laura Navasardian has become a cult figure among audiences who crave rigor and vulnerability in equal measure. Performing on a 1732 Montagnana cello, she draws a tone that feels carved from bronze yet dissolves into whispers at the edge of audibility.
+                    </p>
+                    <p class="bio-paragraph">
+                        Raised between Yerevan, Berlin, and New York, Laura trained with Natalia Gutman before launching a career that now spans Wigmore Hall, Salle Pleyel, and the Walt Disney Concert Hall. Each new program is developed like a gallery installation: long-form research residencies, handwritten scores, and immersive lighting designs.
+                    </p>
+                    <div class="pull-quote" data-aos="fade-up">
+                        "I am obsessed with how a single sustained tone can eclipse the passage of time."
                     </div>
-
-                    <!-- Image -->
-                    <div class="md:w-7/12 relative mt-8 md:mt-0">
-                        <div class="aspect-[4/5] w-full md:w-4/5 ml-auto bg-gray-200">
-                            <img src="assets/images/laura1.jpg" class="w-full h-full object-cover grayscale md:hover:grayscale-0 transition-all duration-700">
-                        </div>
-                        <!-- Caption: Moved to static relative for mobile to prevent overlap -->
-                        <div class="relative md:absolute -mt-8 md:-mt-0 md:-bottom-6 md:-left-6 bg-oxblood text-paper p-6 max-w-[80%] md:max-w-xs mx-auto md:mx-0 shadow-xl">
-                            <p class="font-serif italic text-lg leading-none">"A phenomenon of rare intensity."</p>
-                            <span class="font-mono text-[10px] mt-2 block uppercase opacity-70">NY Times</span>
-                        </div>
-                    </div>
+                    <p class="bio-paragraph">
+                        Collaborators range from experimental choreographers at the Opéra national de Paris to filmmakers documenting the slow aging of gut strings. In 2025 she premieres a multi-year commission cycle pairing Kaija Saariaho, Jessie Montgomery, and visual artist Taryn Simon.
+                    </p>
+                    <p class="bio-paragraph">
+                        Away from touring, Laura records analogue sessions in Paris—collecting the crackle of tape and the hum of empty halls—to build a sonic atlas of the cello. That archive will unfold later this year as a living digital gallery.
+                    </p>
+                    <div class="signature">Laura Navasardian</div>
                 </div>
             </div>
         </section>
@@ -347,53 +1083,250 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="latest-section">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                        <div>
+                            <h3 class="font-serif text-4xl md:text-5xl italic text-ink">Latest</h3>
+                        </div>
+                        <p class="font-mono text-[11px] uppercase tracking-[0.35em] text-stone mt-6 md:mt-0 md:text-right">Articles · Films · Collaborations</p>
+                    </div>
+
+                    <div class="latest-grid">
+                        <article class="latest-card latest-card--hero latest-card--image" style="--card-image: url('assets/images/LauraBach_8.jpg');">
+                            <div class="latest-card-content">
+                                <span class="latest-card-label">Feature</span>
+                                <h4 class="latest-card-title">The Paris Sessions</h4>
+                                <p class="latest-card-text">Nightfall recordings tracked to tape in Montmartre; tracing the breath between takes.</p>
+                                <span class="latest-card-link">Read feature</span>
+                            </div>
+                        </article>
+
+                        <article class="latest-card latest-card--tall latest-card--image" style="--card-image: url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80');">
+                            <div class="latest-card-content">
+                                <span class="latest-card-label">Video</span>
+                                <h4 class="latest-card-title">Resonance / Short Film</h4>
+                                <p class="latest-card-text">A five-minute study on bow pressure filmed inside Théâtre des Bouffes du Nord.</p>
+                                <span class="latest-card-link">Watch now</span>
+                            </div>
+                        </article>
+
+                        <article class="latest-card latest-card--wide" style="background: linear-gradient(135deg, #f9ede1, #fff);">
+                            <div class="latest-card-content">
+                                <span class="latest-card-label text-oxblood">Journal</span>
+                                <h4 class="latest-card-title text-ink">Field Notes from Berlin</h4>
+                                <p class="latest-card-text">Sketches from rehearsals with the Staatskapelle, including Margaret Ekpo's new duet.</p>
+                                <span class="latest-card-link text-oxblood">Open log</span>
+                            </div>
+                        </article>
+
+                        <article class="latest-card latest-card--wide" style="background: #f3f0e8;">
+                            <div class="latest-card-content">
+                                <span class="latest-card-label text-oxblood">Collaboration</span>
+                                <h4 class="latest-card-title text-ink">Saariaho Residency</h4>
+                                <p class="latest-card-text">Three-city installation pairing cello, scent sculpture, and archival film.</p>
+                                <span class="latest-card-link text-oxblood">Discover</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- MEDIA & REPERTOIRE (Stacked on Mobile) -->
-        <section id="media" class="flex flex-col-reverse md:flex-row border-t border-ink">
-            
-            <!-- Repertoire -->
-            <div class="w-full md:w-1/2 p-8 md:p-24 bg-paper border-t md:border-t-0 md:border-r border-ink">
-                <span class="font-mono text-[10px] text-oxblood uppercase tracking-widest mb-8 block">04 — Repertoire</span>
-                <div class="grid grid-cols-1 gap-12">
-                    <div>
-                        <h3 class="font-serif text-xl italic mb-4 border-b border-ink/20 pb-2 inline-block">Concertos</h3>
-                        <ul class="font-mono text-xs md:text-sm space-y-3 text-gray-600 uppercase tracking-wide">
-                            <li>Elgar — E Minor</li>
-                            <li>Dvořák — B Minor</li>
-                            <li>Shostakovich — No. 1</li>
-                        </ul>
+        <!-- REPERTOIRE (Genspark) -->
+        <section id="repertoire" class="repertoire">
+            <h3 class="section-title" data-aos="fade-up">Repertoire</h3>
+            <div class="repertoire-container">
+                <div class="repertoire-category open" data-aos="fade-up">
+                    <div class="category-header">
+                        <h4 class="category-title">Concertos</h4>
+                        <i class="fas fa-chevron-down category-toggle-icon"></i>
                     </div>
-                    <div>
-                        <h3 class="font-serif text-xl italic mb-4 border-b border-ink/20 pb-2 inline-block">Sonatas</h3>
-                        <ul class="font-mono text-xs md:text-sm space-y-3 text-gray-600 uppercase tracking-wide">
-                            <li>Beethoven — No. 3 in A</li>
-                            <li>Brahms — No. 1 in E min</li>
-                            <li>Debussy — D Minor</li>
-                        </ul>
+                    <div class="repertoire-list">
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Antonín Dvořák</div>
+                            <div class="repertoire-piece">Cello Concerto in B minor, Op. 104</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Edward Elgar</div>
+                            <div class="repertoire-piece">Cello Concerto in E minor, Op. 85</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Robert Schumann</div>
+                            <div class="repertoire-piece">Cello Concerto in A minor, Op. 129</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Joseph Haydn</div>
+                            <div class="repertoire-piece">Cello Concerto No. 1 in C major</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Dmitri Shostakovich</div>
+                            <div class="repertoire-piece">Cello Concerto No. 1 in E-flat major</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Camille Saint-Saëns</div>
+                            <div class="repertoire-piece">Cello Concerto No. 1 in A minor</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Pyotr Ilyich Tchaikovsky</div>
+                            <div class="repertoire-piece">Variations on a Rococo Theme, Op. 33</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Media Gallery -->
-            <div class="w-full md:w-1/2 bg-ink text-paper p-8 md:p-24">
-                <div class="flex justify-between mb-8">
-                     <span class="font-mono text-[10px] text-stone uppercase tracking-widest">05 — Media</span>
-                </div>
-                
-                <!-- Mobile: Single Column, Desktop: Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="aspect-square bg-stone/20 overflow-hidden">
-                        <img src="assets/images/LauraBach_8.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale">
+                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-header">
+                        <h4 class="category-title">Concert Works</h4>
+                        <i class="fas fa-chevron-down category-toggle-icon"></i>
                     </div>
-                    <div class="aspect-[3/4] bg-stone/20 overflow-hidden md:translate-y-12">
-                        <img src="assets/images/LauraBach_3.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700 grayscale">
+                    <div class="repertoire-list">
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Richard Strauss</div>
+                            <div class="repertoire-piece">Don Quixote, Op. 35</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Ernest Bloch</div>
+                            <div class="repertoire-piece">Schelomo: Hebraic Rhapsody</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Gabriel Fauré</div>
+                            <div class="repertoire-piece">Élégie in C minor, Op. 24</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Ottorino Respighi</div>
+                            <div class="repertoire-piece">Adagio con variazioni</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Samuel Barber</div>
+                            <div class="repertoire-piece">Adagio for Cello & Piano (arr. 2022)</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Max Bruch</div>
+                            <div class="repertoire-piece">Kol Nidrei, Op. 47</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-header">
+                        <h4 class="category-title">Chamber Music</h4>
+                        <i class="fas fa-chevron-down category-toggle-icon"></i>
+                    </div>
+                    <div class="repertoire-list">
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Ludwig van Beethoven</div>
+                            <div class="repertoire-piece">String Trio in C minor, Op. 9 No. 3</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Johannes Brahms</div>
+                            <div class="repertoire-piece">Piano Trio No. 1 in B major, Op. 8</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Claude Debussy</div>
+                            <div class="repertoire-piece">Cello Sonata in D minor</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Sergei Rachmaninoff</div>
+                            <div class="repertoire-piece">Sonata for Cello and Piano in G minor, Op. 19</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Maurice Ravel</div>
+                            <div class="repertoire-piece">Piano Trio in A minor</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-header">
+                        <h4 class="category-title">Contemporary Works</h4>
+                        <i class="fas fa-chevron-down category-toggle-icon"></i>
+                    </div>
+                    <div class="repertoire-list">
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Kaija Saariaho</div>
+                            <div class="repertoire-piece">Notes on Light</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Caroline Shaw</div>
+                            <div class="repertoire-piece">In manus tuas</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Jessie Montgomery</div>
+                            <div class="repertoire-piece">Divided for Cello & Orchestra</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Anna Thorvaldsdottir</div>
+                            <div class="repertoire-piece">Shades for Cello & Electronics</div>
+                        </div>
+                        <div class="repertoire-item">
+                            <div class="repertoire-composer">Bryce Dessner</div>
+                            <div class="repertoire-piece">Voy a Dormir</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- MEDIA -->
+        <section id="gallery" class="gallery">
+            <h3 class="section-title" data-aos="fade-up">Media</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/b7f93e1803aa8000d8f1710137365165" alt="Laura performing" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h4 class="gallery-title">Studio Session</h4>
+                        <p class="gallery-desc">Recording session for Bach's Cello Suites</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/221396feb71adfcf1f10bbea4ad88559" alt="Montagnana cello" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h4 class="gallery-title">The Instrument</h4>
+                        <p class="gallery-desc">Laura's 1732 Montagnana cello</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/718633a4e643d87cb86ec049780afaa7" alt="Rehearsal" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h4 class="gallery-title">Practice Session</h4>
+                        <p class="gallery-desc">Private rehearsal in Paris</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/78d1fd25558e9e387fdef61009c86733" alt="Concert performance" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h4 class="gallery-title">Baroque Performance</h4>
+                        <p class="gallery-desc">Concert at St. Martin's Cathedral</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="view-more hover-link" data-aos="fade-up">View Complete Gallery</a>
+        </section>
+
+        <!-- PRESS -->
+        <section id="press" class="press">
+            <h3 class="section-title" data-aos="fade-up">Press & Reviews</h3>
+            <div class="reviews">
+                <div class="review" data-aos="fade-up">
+                    <div class="review-quote">Navasardian suspends time; her gut-string tone feels sculpted from bronze, yet every phrase unfolds with modern choreography. Bach sounded like it was written yesterday.</div>
+                    <div class="review-source">The New York Times</div>
+                </div>
+                <div class="review" data-aos="fade-up">
+                    <div class="review-quote">Pairing Saariaho and Bach, she built a single narrative arc—rigorous, human, luminous. The audience scarcely breathed for the final ten minutes.</div>
+                    <div class="review-source">The Guardian</div>
+                </div>
+                <div class="review" data-aos="fade-up">
+                    <div class="review-quote">Laura is a fearless architect of sound installations who happens to wield a cello. Her Shostakovich revealed layers of meaning rarely heard.</div>
+                    <div class="review-source">Le Monde</div>
+                </div>
+            </div>
+            <div class="press-features">
+                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=BBC" alt="BBC" class="press-logo" data-aos="fade-up">
+                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Forbes" alt="Forbes" class="press-logo" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Classic+FM" alt="Classic FM" class="press-logo" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Strad" alt="The Strad" class="press-logo" data-aos="fade-up" data-aos-delay="300">
+            </div>
+        </section>
         <!-- MARQUEE -->
         <section class="py-8 md:py-12 border-y border-ink bg-oxblood text-paper overflow-hidden">
             <div class="marquee-container">
@@ -408,34 +1341,94 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer id="contact" class="relative bg-paper pt-20 pb-12 overflow-hidden">
-            <div class="container mx-auto px-6 md:px-12 relative z-10">
-                <div class="flex flex-col gap-16">
-                    <div>
-                        <h2 class="font-serif text-5xl md:text-8xl leading-none mb-8 text-ink">
-                            Let's create <br><span class="italic text-oxblood">resonance.</span>
-                        </h2>
-                        <div class="space-y-6">
-                            <a href="#" class="block font-serif text-xl md:text-2xl hover:text-oxblood">HarrisonParrott &nearr;</a>
-                            <a href="mailto:contact@laura.com" class="block font-serif text-xl md:text-2xl hover:text-oxblood">contact@laura.com &nearr;</a>
+        <!-- CONTACT -->
+        <section id="contact" class="contact">
+            <h3 class="section-title" data-aos="fade-up">Contact</h3>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <p class="contact-text">For bookings, residencies, or press inquiries, connect through management or send a direct note below. Responses typically arrive within 48 hours.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <span>Management Office</span>
+                                HarrisonParrott · 25 Heddon Street, London
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <span>Email</span>
+                                <a href="mailto:studio@lauranavasardian.com">studio@lauranavasardian.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info-text">
+                                <span>Phone</span>
+                                +44 (0)20 1234 9876
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Mobile Optimized Socials -->
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#" class="h-12 px-8 border border-ink rounded-full flex items-center justify-center font-mono text-[10px] uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">Instagram</a>
-                        <a href="#" class="h-12 px-8 border border-ink rounded-full flex items-center justify-center font-mono text-[10px] uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">Spotify</a>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon hover-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon hover-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon hover-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon hover-link"><i class="fab fa-youtube"></i></a>
                     </div>
-                    
-                    <p class="font-mono text-[10px] text-stone uppercase mt-8">
-                        &copy; 2025 Laura Navasardian.
-                    </p>
                 </div>
+                <div class="contact-form" data-aos="fade-left">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" placeholder=" " required>
+                            <label for="name" class="form-label">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder=" " required>
+                            <label for="email" class="form-label">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" placeholder=" ">
+                            <label for="subject" class="form-label">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" placeholder=" " required></textarea>
+                            <label for="message" class="form-label">Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn hover-link">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">Laura Navasardian</div>
+                <div class="footer-nav">
+                    <a href="#biography" class="footer-nav-link hover-link">About</a>
+                    <a href="#agenda" class="footer-nav-link hover-link">Agenda</a>
+                    <a href="#repertoire" class="footer-nav-link hover-link">Repertoire</a>
+                    <a href="#gallery" class="footer-nav-link hover-link">Media</a>
+                    <a href="#press" class="footer-nav-link hover-link">Press</a>
+                    <a href="#contact" class="footer-nav-link hover-link">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2025 Laura Navasardian. All rights reserved.</div>
+                <div class="credits">Website by Studio Meridian</div>
             </div>
         </footer>
 
+
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <script>
         // Header Scroll Background Effect
@@ -488,22 +1481,6 @@
             heroVideo.classList.add('hidden');
             heroFallback.classList.remove('hidden');
         });
-
-        // Custom Cursor Logic (Safe for Mobile)
-        const cursor = document.getElementById('cursor');
-        const triggers = document.querySelectorAll('.hover-trigger');
-        const isMobile = window.matchMedia("(pointer: coarse)").matches;
-
-        if (!isMobile) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            triggers.forEach(trigger => {
-                trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
-        }
 
         // Menu Logic
         const menuBtn = document.getElementById('menu-btn');
@@ -610,6 +1587,30 @@
             }
             observer.observe(el);
         });
+
+        // AOS reveal
+        if (window.AOS) {
+            AOS.init({
+                duration: 900,
+                easing: 'ease-out',
+                once: true,
+                offset: 40,
+            });
+        }
+
+        // Repertoire accordion
+        const repertoireHeaders = document.querySelectorAll('.repertoire-category .category-header');
+        repertoireHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const category = header.closest('.repertoire-category');
+                category.classList.toggle('open');
+            });
+        });
+
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (event) => event.preventDefault());
+        }
 
     </script>
 </body>
