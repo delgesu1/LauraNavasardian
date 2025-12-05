@@ -2131,10 +2131,18 @@
         const heroFallback = document.getElementById('hero-fallback');
         let videoPlaybackAttempted = false;
 
-        // Fade in video when ready to play
-        heroVideo.addEventListener('canplay', () => {
+        // Fade in video as soon as possible
+        function fadeInVideo() {
             heroVideo.style.opacity = '1';
-        });
+        }
+
+        // Check if video is already loaded (cached)
+        if (heroVideo.readyState >= 2) {
+            fadeInVideo();
+        } else {
+            // Use loadeddata - fires when first frame is available (earlier than canplay)
+            heroVideo.addEventListener('loadeddata', fadeInVideo, { once: true });
+        }
 
         // Detect if video fails to play
         heroVideo.addEventListener('error', () => {
