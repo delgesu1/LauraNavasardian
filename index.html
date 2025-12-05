@@ -1537,7 +1537,7 @@
                 <!-- Video (All Devices) - Extra height for parallax -->
                 <video id="hero-video" autoplay loop muted playsinline preload="auto"
                     class="object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none"
-                    style="will-change: transform; opacity: 0; transition: opacity 0.8s ease-in;">
+                    style="will-change: transform; opacity: 0; transition: opacity 0.8s ease-in, transform 0.15s ease-out;">
                     <source src="assets/videos/hero-bg.mp4" type="video/mp4">
                 </video>
                 <!-- Fallback Image (Hidden by default, shown if video fails) -->
@@ -2241,19 +2241,21 @@
 
                 // Only apply effects while hero is in view
                 if (scrolled < heroBottom) {
-                    const parallaxSpeed = 0.5; // Adjust for more/less effect
+                    const isMobile = window.innerWidth <= 768;
+
+                    // Slower parallax and minimal zoom on mobile
+                    const parallaxSpeed = isMobile ? 0.2 : 0.5;
                     const yPos = scrolled * parallaxSpeed;
 
                     // Calculate blur amount - starts at 20% scroll progress
                     const scrollProgress = scrolled / heroBottom;
                     const blurStart = 0.2; // Start blur at 20% down
                     const blurAmount = scrollProgress > blurStart
-                        ? ((scrollProgress - blurStart) / (1 - blurStart)) * 20
+                        ? ((scrollProgress - blurStart) / (1 - blurStart)) * (isMobile ? 10 : 20)
                         : 0;
 
-                    // Reduce zoom on mobile for subtler effect
-                    const isMobile = window.innerWidth <= 768;
-                    const maxZoom = isMobile ? 0.02 : 0.08; // 2% on mobile, 8% on desktop
+                    // Very subtle zoom on mobile
+                    const maxZoom = isMobile ? 0.01 : 0.08; // 1% on mobile, 8% on desktop
                     const scale = 1 + (scrollProgress * maxZoom);
 
                     heroVideo.style.transform = `translateY(${yPos}px) scale(${scale})`;
@@ -2306,7 +2308,7 @@
                 duration: 900,
                 easing: 'ease-out',
                 once: true,
-                offset: 40,
+                offset: 150,
             });
         }
 
