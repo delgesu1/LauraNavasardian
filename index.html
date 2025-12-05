@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Laura Navasardian | Cello</title>
-    <meta name="description" content="Avant-garde classical cellist Laura Navasardian.">
-    
+    <meta name="description" content="Award-winning cellist and William A. Loeb Fellow at Curtis Institute of Music. Performing chamber works and concertos at Carnegie Hall, Wigmore Hall, and beyond.">
+    <meta name="author" content="Laura Navasardian">
+    <meta name="keywords" content="Laura Navasardian, cellist, classical music, chamber music, Curtis Institute, cello, classical musician">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lauranavasardian.com/">
+    <meta property="og:title" content="Laura Navasardian | Cellist">
+    <meta property="og:description" content="Award-winning cellist and William A. Loeb Fellow at Curtis Institute of Music. Performing chamber works and concertos at Carnegie Hall, Wigmore Hall, and beyond.">
+    <meta property="og:image" content="https://lauranavasardian.com/assets/images/LauraBach_3.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Laura Navasardian, cellist">
+    <meta property="og:site_name" content="Laura Navasardian">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://lauranavasardian.com/">
+    <meta name="twitter:title" content="Laura Navasardian | Cellist">
+    <meta name="twitter:description" content="Award-winning cellist and William A. Loeb Fellow at Curtis Institute of Music. Performing chamber works and concertos at Carnegie Hall, Wigmore Hall, and beyond.">
+    <meta name="twitter:image" content="https://lauranavasardian.com/assets/images/LauraBach_3.jpg">
+    <meta name="twitter:image:alt" content="Laura Navasardian, cellist">
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#1C1C1B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Laura Navasardian">
+    <link rel="canonical" href="https://lauranavasardian.com/">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
@@ -30,7 +62,7 @@
                         mono: ['"Space Grotesk"', 'monospace'],
                     },
                     fontSize: {
-                        'huge': 'clamp(3rem, 14vw, 16rem)', 
+                        'huge': 'clamp(3rem, 14vw, 16rem)',
                     },
                     backgroundImage: {
                         'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
@@ -43,11 +75,14 @@
     <!-- Custom CSS -->
     <style>
         /* Universal Mobile Fixes */
-        html, body {
-            overflow-x: hidden; /* Prevent horizontal scroll */
+        html,
+        body {
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
             width: 100%;
             -webkit-font-smoothing: antialiased;
         }
+
         body {
             font-family: 'Space Grotesk', 'monospace';
         }
@@ -78,47 +113,73 @@
 
         /* Mobile Defaults (Tap Feedback) */
         @media (pointer: coarse) {
-            .hover-trigger:active { opacity: 0.7; } /* Tap feedback */
+            .hover-trigger:active {
+                opacity: 0.7;
+            }
+
+            /* Tap feedback */
         }
 
         /* Typography */
-        .font-serif { 
-            font-feature-settings: "ordn", "liga", "dlig"; 
+        .font-serif {
+            font-feature-settings: "ordn", "liga", "dlig";
         }
+
         blockquote,
         .pull-quote {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             letter-spacing: 0.02em;
         }
-        
+
         /* Reveal Animation */
-        .reveal-text { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
-        .reveal-text > span {
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .reveal-text>span {
             display: inline-block;
             transform: translateY(110%);
             transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .is-visible .reveal-text > span { transform: translateY(0); }
+
+        .is-visible .reveal-text>span {
+            transform: translateY(0);
+        }
 
         /* Marquee */
-        .marquee-container { overflow: hidden; white-space: nowrap; display: flex; }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+        }
+
         .marquee-content {
             flex-shrink: 0;
             animation: marquee 20s linear infinite;
         }
+
         /* Slower animation on mobile to prevent dizziness */
         @media (max-width: 768px) {
-            .marquee-content { animation-duration: 15s; }
+            .marquee-content {
+                animation-duration: 15s;
+            }
         }
+
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* Mobile Menu Animation */
         #nav-overlay {
-            height: 100dvh; /* Use dynamic viewport height */
+            height: 100dvh;
+            /* Use dynamic viewport height */
         }
 
         /* Header Scroll Effect */
@@ -128,12 +189,14 @@
             background-color: transparent;
             border-bottom: 1px solid transparent;
         }
+
         #main-header.scrolled {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             background-color: rgba(28, 28, 27, 0.3);
             border-bottom: 1px solid rgba(234, 229, 217, 0.05);
         }
+
         #main-header.scrolled a,
         #main-header.scrolled button {
             color: #EAE5D9;
@@ -149,6 +212,7 @@
             justify-content: space-between;
             cursor: pointer;
         }
+
         .hamburger span {
             display: block;
             width: 100%;
@@ -157,205 +221,267 @@
             transition: all 0.3s ease;
             transform-origin: center;
         }
+
         .hamburger.active span:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
         }
+
         .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
+
         .hamburger.active span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }
 
-/* Shared Section Styling */
-.section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem;
-    font-weight: 300;
-    margin-bottom: 3rem;
-    position: relative;
-    display: inline-block;
-    color: var(--cream);
-}
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50%;
-    height: 1px;
-    background-color: var(--gold);
-}
+        /* Shared Section Styling */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--cream);
+        }
 
-/* Biography */
-.biography {
-    padding: 10rem 5%;
-    background-color: var(--charcoal-light);
-    color: var(--cream);
-}
-.biography-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 4rem;
-    margin-top: 4rem;
-}
-.bio-image {
-    width: 100%;
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-.bio-image::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: -20px;
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--gold);
-    z-index: -1;
-    transition: var(--transition);
-}
-.bio-image:hover::after {
-    top: 10px;
-    left: -10px;
-}
-.bio-text {
-    position: relative;
-}
-.bio-paragraph {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-    color: rgba(248, 245, 240, 0.9);
-}
-.bio-paragraph.large {
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-.pull-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 2.2rem;
-    line-height: 1.4;
-    color: var(--gold-light);
-    margin: 2.5rem 0;
-    padding-left: 2rem;
-    position: relative;
-}
-.pull-quote::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background-color: var(--gold);
-}
-.signature {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    font-style: italic;
-    color: var(--gold);
-    margin-top: 3rem;
-}
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 1px;
+            background-color: var(--gold);
+        }
 
-/* Repertoire */
-.repertoire {
-    padding: 10rem 5%;
-    background-color: var(--charcoal);
-    color: var(--cream);
-}
-.repertoire-container {
-    margin-top: 5rem;
-}
-.repertoire-category {
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-}
-.category-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 0;
-}
-.category-header::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    height: calc(100% + 4px);
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-    z-index: -1;
-}
-.category-header:hover::before {
-    background-color: rgba(212, 175, 55, 0.08);
-}
-.category-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    color: var(--gold);
-}
-.category-toggle-icon {
-    color: var(--gold);
-    font-size: 1.2rem;
-    transition: transform 0.4s ease;
-}
-.repertoire-category.open .category-toggle-icon {
-    transform: rotate(180deg);
-}
-.repertoire-list {
-    max-height: 0;
-    overflow: hidden;
-    background-color: rgba(212, 175, 55, 0.02);
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    padding: 0 1rem;
-}
-.repertoire-category.open .repertoire-list {
-    max-height: 1000px;
-    padding: 1.5rem 1rem;
-}
-.repertoire-item {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.6;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-}
-.repertoire-item:last-child {
-    border-bottom: none;
-}
-.repertoire-composer {
-    font-weight: 500;
-    color: var(--cream);
-}
-.repertoire-piece {
-    font-style: italic;
-    color: rgba(248, 245, 240, 0.8);
-}
+        /* Biography */
+        .biography {
+            padding: 10rem 5%;
+            background: linear-gradient(135deg, #fdfcf9 0%, #f8f5f0 50%, #fdfcf9 100%);
+            color: var(--ink);
+        }
 
-/* Latest Section (Agenda Extension) */
+        .biography .section-title {
+            color: var(--ink);
+        }
+
+        .biography .section-title::after {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 100%);
+            height: 2px;
+        }
+
+        .biography-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .bio-image {
+            width: 100%;
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .bio-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            z-index: -1;
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+
+        .bio-image:hover::after {
+            top: 10px;
+            left: -10px;
+            opacity: 1;
+            border-color: var(--burgundy);
+        }
+
+        .bio-text {
+            position: relative;
+        }
+
+        .bio-paragraph {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: rgba(28, 28, 27, 0.85);
+        }
+
+        .bio-paragraph.large {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--ink);
+        }
+
+        .pull-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            line-height: 1.4;
+            color: var(--burgundy);
+            margin: 2.5rem 0;
+            padding: 2rem;
+            padding-left: 3rem;
+            position: relative;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(117, 13, 55, 0.05) 100%);
+            border-radius: 4px;
+        }
+
+        .pull-quote::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--burgundy) 100%);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--burgundy) 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 3rem;
+        }
+
+        /* Repertoire */
+        .repertoire {
+            padding: 10rem 5%;
+            background-color: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .repertoire-container {
+            margin-top: 5rem;
+        }
+
+        .repertoire-category {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 0;
+        }
+
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: calc(100% + 4px);
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+            z-index: -1;
+        }
+
+        .category-header:hover::before {
+            background-color: rgba(212, 175, 55, 0.08);
+        }
+
+        .category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+        }
+
+        .category-toggle-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .repertoire-category.open .category-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .repertoire-list {
+            max-height: 0;
+            overflow: hidden;
+            background-color: rgba(212, 175, 55, 0.02);
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            padding: 0 1rem;
+        }
+
+        .repertoire-category.open .repertoire-list {
+            max-height: 1000px;
+            padding: 1.5rem 1rem;
+        }
+
+        .repertoire-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .repertoire-item:last-child {
+            border-bottom: none;
+        }
+
+        .repertoire-composer {
+            font-weight: 500;
+            color: var(--cream);
+        }
+
+        .repertoire-piece {
+            font-style: italic;
+            color: rgba(248, 245, 240, 0.8);
+        }
+
+        /* Agenda Event Title Hover Effect */
+        .event-title {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .group:hover .event-title {
+            transform: scale(1.02) translateX(6px);
+            color: var(--burgundy);
+            letter-spacing: 0.01em;
+        }
+
+        /* Latest Section (Agenda Extension) */
         .latest-section {
             margin-top: 6rem;
             padding-top: 4rem;
             border-top: 1px solid rgba(28, 28, 27, 0.1);
         }
+
         .latest-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: 180px;
             gap: 1.5rem;
         }
+
         .latest-card {
             position: relative;
             border-radius: 1.5rem;
@@ -372,24 +498,30 @@
             transition: transform 0.35s ease, box-shadow 0.35s ease;
             min-height: 220px;
         }
+
         .latest-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px rgba(28, 28, 27, 0.12);
         }
+
         .latest-card--hero {
             grid-column: span 4;
             grid-row: span 2;
         }
+
         .latest-card--tall {
             grid-column: span 2;
             grid-row: span 2;
         }
+
         .latest-card--wide {
             grid-column: span 3;
         }
+
         .latest-card--image {
             color: var(--cream);
         }
+
         .latest-card--image::before {
             content: '';
             position: absolute;
@@ -400,19 +532,23 @@
             filter: saturate(1.1);
             transition: transform 0.5s ease;
         }
+
         .latest-card--image::after {
             content: '';
             position: absolute;
             inset: 0;
             background: linear-gradient(0deg, rgba(12, 12, 12, 0.8) 0%, rgba(12, 12, 12, 0.05) 100%);
         }
+
         .latest-card--image:hover::before {
             transform: scale(1.05);
         }
+
         .latest-card-content {
             position: relative;
             z-index: 1;
         }
+
         .latest-card-label {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.65rem;
@@ -421,12 +557,14 @@
             margin-bottom: 0.75rem;
             display: block;
         }
+
         .latest-card-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
             line-height: 1.1;
             margin-bottom: 0.75rem;
         }
+
         .latest-card-text {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.95rem;
@@ -434,9 +572,11 @@
             margin-bottom: 1.5rem;
             color: rgba(28, 28, 27, 0.8);
         }
+
         .latest-card--image .latest-card-text {
             color: rgba(255, 255, 255, 0.85);
         }
+
         .latest-card-link {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.75rem;
@@ -446,15 +586,18 @@
             align-items: center;
             gap: 0.75rem;
         }
+
         .latest-card-link::after {
             content: '↗';
             font-size: 1rem;
         }
+
         @media (max-width: 1024px) {
             .latest-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 grid-auto-rows: auto;
             }
+
             .latest-card,
             .latest-card--hero,
             .latest-card--tall,
@@ -464,10 +607,12 @@
                 min-height: 240px;
             }
         }
+
         @media (max-width: 640px) {
             .latest-grid {
                 grid-template-columns: 1fr;
             }
+
             .latest-card,
             .latest-card--hero,
             .latest-card--tall,
@@ -476,16 +621,87 @@
             }
         }
 
-/* Media */
+        /* Media */
         .gallery {
             padding: 10rem 5% 5rem;
             background-color: #EAE5D9;
             color: var(--ink);
             position: relative;
         }
+
         .gallery .section-title {
             color: var(--ink);
         }
+
+        .media-tabs {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid rgba(28, 28, 27, 0.15);
+            position: relative;
+        }
+
+        .media-tab {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(28, 28, 27, 0.4);
+            background: none;
+            border: none;
+            padding: 1rem 0;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .media-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 100%);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .media-tab.active {
+            color: var(--ink);
+        }
+
+        .media-tab.active::after {
+            width: 100%;
+        }
+
+        .media-tab:hover:not(.active) {
+            color: rgba(28, 28, 27, 0.7);
+        }
+
+        .media-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .media-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -494,24 +710,44 @@
             height: 80vh;
             margin-top: 5rem;
         }
+
         .gallery-item {
             position: relative;
             overflow: hidden;
             cursor: pointer;
         }
-        .gallery-item:nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 3; }
-        .gallery-item:nth-child(2) { grid-column: 7 / 10; grid-row: 1 / 2; }
-        .gallery-item:nth-child(3) { grid-column: 10 / 13; grid-row: 1 / 2; }
-        .gallery-item:nth-child(4) { grid-column: 7 / 13; grid-row: 2 / 3; }
+
+        .gallery-item:nth-child(1) {
+            grid-column: 1 / 7;
+            grid-row: 1 / 3;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: 7 / 10;
+            grid-row: 1 / 2;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: 10 / 13;
+            grid-row: 1 / 2;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: 7 / 13;
+            grid-row: 2 / 3;
+        }
+
         .gallery-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s ease;
         }
+
         .gallery-item:hover .gallery-image {
             transform: scale(1.1);
         }
+
         .gallery-overlay {
             position: absolute;
             top: 0;
@@ -527,9 +763,11 @@
             padding: 2rem;
             color: var(--cream);
         }
+
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
+
         .gallery-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
@@ -538,10 +776,12 @@
             opacity: 0;
             transition: all 0.5s ease 0.1s;
         }
+
         .gallery-item:hover .gallery-title {
             transform: translateY(0);
             opacity: 1;
         }
+
         .gallery-desc {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem;
@@ -550,10 +790,12 @@
             opacity: 0;
             transition: all 0.5s ease 0.2s;
         }
+
         .gallery-item:hover .gallery-desc {
             transform: translateY(0);
             opacity: 1;
         }
+
         .view-more {
             display: inline-block;
             margin-top: 3rem;
@@ -563,6 +805,7 @@
             color: var(--gold);
             position: relative;
         }
+
         .view-more::after {
             content: '';
             position: absolute;
@@ -573,370 +816,614 @@
             background-color: var(--gold);
             transition: var(--transition);
         }
+
         .view-more:hover {
             color: var(--gold-light);
         }
+
         .view-more:hover::after {
             width: 0;
         }
 
-/* Press */
-.press {
-    padding: 10rem 5%;
-    background-color: var(--charcoal-light);
-    color: var(--cream);
-}
-.reviews {
-    margin-top: 5rem;
-}
-.review {
-    margin-bottom: 5rem;
-}
-.review-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-style: italic;
-    line-height: 1.4;
-    color: var(--cream);
-    position: relative;
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
-}
-.review-quote::before {
-    content: '"';
-    position: absolute;
-    left: 0;
-    top: -10px;
-    font-size: 4rem;
-    color: var(--gold);
-    opacity: 0.5;
-}
-.review-source {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.press-features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 5rem;
-}
+        /* Videos Grid */
+        .videos-grid {
+            column-count: 2;
+            column-gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #fdfcf9 0%, #f8f5f0 50%, #fdfaf4 100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            box-shadow: 0 2px 8px rgba(28, 28, 27, 0.06);
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .video-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(28, 28, 27, 0.12);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 2rem 2rem 1.75rem;
+            background: linear-gradient(135deg, #fdfcf9 0%, #f8f5f0 50%, #fdfaf4 100%);
+            border-top: none;
+            min-height: 110px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-composer {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            margin-bottom: 0.65rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.5rem;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .video-composer::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0.75rem;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 100%);
+        }
+
+        .video-item:hover .video-composer {
+            color: var(--gold);
+            opacity: 1;
+            letter-spacing: 0.4em;
+        }
+
+        .video-piece {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem;
+            line-height: 1.35;
+            color: var(--ink);
+            margin: 0;
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover .video-piece {
+            color: var(--burgundy);
+            transform: translateX(4px);
+        }
+
+
+        .video-wrapper--vertical {
+            padding-bottom: 177.78%;
+            /* 9:16 aspect ratio for vertical */
+        }
+
+        .custom-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .custom-video::-webkit-media-controls-panel {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        }
+
+        .custom-video::-webkit-media-controls-overflow-button {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .videos-grid {
+                column-count: 1;
+                column-gap: 0;
+            }
+
+            .media-tabs {
+                gap: 2rem;
+            }
+
+            .media-tab {
+                font-size: 0.85rem;
+            }
+
+            .video-wrapper--vertical {
+                padding-bottom: 56.25%;
+                /* Back to 16:9 on mobile for better fit */
+            }
+
+            .custom-video {
+                object-fit: contain;
+            }
+
+            .video-info {
+                padding: 1.75rem 1.5rem 1.5rem;
+                min-height: 95px;
+            }
+
+            .video-composer {
+                font-size: 0.6rem;
+                letter-spacing: 0.3em;
+                padding-left: 1.25rem;
+            }
+
+            .video-composer::before {
+                width: 0.6rem;
+            }
+
+            .video-piece {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Press */
+        .press {
+            padding: 10rem 5%;
+            background-color: var(--charcoal-light);
+            color: var(--cream);
+        }
+
+        .reviews {
+            margin-top: 5rem;
+        }
+
+        .review {
+            margin-bottom: 5rem;
+        }
+
+        .review-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--cream);
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+
+        .review-source {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .press-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 5rem;
+        }
+
         .press-logo {
             margin: 2rem;
             opacity: 0.6;
             transition: var(--transition);
             filter: grayscale(100%);
         }
+
         .press-logo:hover {
             opacity: 1;
             filter: grayscale(0%);
         }
 
-/* Contact */
-.contact {
-    padding: 10rem 5%;
-    background-color: var(--charcoal);
-    color: var(--cream);
-}
-.contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 4rem;
-    margin-top: 5rem;
-}
-.contact-text {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-}
-.contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid rgba(248, 245, 240, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-}
-.contact-info-text span {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    color: var(--gold);
-}
-.contact-info-text {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.95rem;
-    color: rgba(248, 245, 240, 0.8);
-    line-height: 1.6;
-}
-.contact-info-text a {
-    color: inherit;
-    border-bottom: 1px solid rgba(248, 245, 240, 0.3);
-}
-.social-icons {
-    display: flex;
-    margin-top: 2rem;
-}
-.social-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid rgba(248, 245, 240, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--cream);
-    margin-right: 1rem;
-    transition: var(--transition);
-}
-.social-icon:hover {
-    color: var(--gold);
-    transform: translateY(-3px);
-}
-.contact-form {
-    background-color: var(--charcoal-light);
-    padding: 3rem;
-    border: 1px solid rgba(248, 245, 240, 0.1);
-}
-.form-group {
-    position: relative;
-    margin-bottom: 2rem;
-}
-.form-control {
-    width: 100%;
-    padding: 1rem 0;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(248, 245, 240, 0.3);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    color: var(--cream);
-}
-.form-control:focus {
-    outline: none;
-    border-color: var(--gold);
-}
-.form-label {
-    position: absolute;
-    top: 0.8rem;
-    left: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    color: rgba(248, 245, 240, 0.5);
-    pointer-events: none;
-    transition: var(--transition);
-}
-.form-control:focus ~ .form-label,
-.form-control:not(:placeholder-shown) ~ .form-label {
-    top: -20px;
-    font-size: 0.8rem;
-    color: var(--gold);
-}
-textarea.form-control {
-    min-height: 120px;
-    resize: none;
-}
-.submit-btn {
-    display: inline-block;
-    padding: 1rem 3rem;
-    border: 1px solid var(--gold);
-    background-color: transparent;
-    color: var(--gold);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: var(--gold);
-    transition: var(--transition);
-    z-index: -1;
-}
-.submit-btn:hover {
-    color: var(--charcoal);
-}
-.submit-btn:hover::before {
-    left: 0;
-}
+        /* Contact */
+        .contact {
+            padding: 10rem 5%;
+            background-color: var(--charcoal);
+            color: var(--cream);
+        }
 
-/* Footer */
-.footer {
-    padding: 5rem 5% 2rem;
-    background-color: var(--charcoal-light);
-    color: var(--cream);
-}
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(248, 245, 240, 0.1);
-}
-.footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-}
-.footer-nav {
-    display: flex;
-}
-.footer-nav-link {
-    margin-left: 2rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--cream);
-    transition: var(--transition);
-}
-.footer-nav-link:hover {
-    color: var(--gold);
-}
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 2rem;
-}
-.copyright,
-.credits {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.8rem;
-    color: rgba(248, 245, 240, 0.5);
-}
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 4rem;
+            margin-top: 5rem;
+        }
 
-/* Responsive tweaks */
-@media (max-width: 1200px) {
-    .gallery-grid {
-        grid-template-columns: repeat(12, 1fr);
-        grid-template-rows: repeat(3, auto);
-        height: auto;
-    }
-    .gallery-item:nth-child(1) {
-        grid-column: 1 / 13;
-        grid-row: 1 / 2;
-    }
-    .gallery-item:nth-child(2) {
-        grid-column: 1 / 7;
-        grid-row: 2 / 3;
-    }
-    .gallery-item:nth-child(3) {
-        grid-column: 7 / 13;
-        grid-row: 2 / 3;
-    }
-    .gallery-item:nth-child(4) {
-        grid-column: 1 / 13;
-        grid-row: 3 / 4;
-    }
-    .gallery-item {
-        height: auto;
-    }
-    .gallery-image {
-        height: 100%;
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-    }
-}
-@media (max-width: 992px) {
-    .biography-content,
-    .contact-content {
-        grid-template-columns: 1fr;
-        grid-gap: 3rem;
-    }
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .footer-nav {
-        margin-top: 2rem;
-        justify-content: center;
-    }
-    .footer-nav-link {
-        margin: 0 1rem;
-    }
-}
-@media (max-width: 981px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 40vh;
-        grid-gap: 1rem;
-        height: auto;
-        margin-top: 2rem;
-    }
-    .gallery-item {
-        height: 40vh;
-    }
-    .gallery {
-        padding: 5rem 8% 3rem;
-    }
-}
-@media (max-width: 768px) {
-    .biography,
-    .repertoire,
-    .press,
-    .contact {
-        padding: 5rem 8% 3rem;
-    }
-    .section-title {
-        font-size: 2.5rem;
-    }
-    .contact-form {
-        padding: 2rem;
-    }
-    .social-icons {
-        justify-content: flex-start;
-    }
-}
-</style>
+        .contact-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(248, 245, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+        }
+
+        .contact-info-text span {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .contact-info-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(248, 245, 240, 0.8);
+            line-height: 1.6;
+        }
+
+        .contact-info-text a {
+            color: inherit;
+            border-bottom: 1px solid rgba(248, 245, 240, 0.3);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(248, 245, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            margin-right: 1rem;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background-color: var(--charcoal-light);
+            padding: 3rem;
+            border: 1px solid rgba(248, 245, 240, 0.1);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(248, 245, 240, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: var(--cream);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 0.8rem;
+            left: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            color: rgba(248, 245, 240, 0.5);
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus~.form-label,
+        .form-control:not(:placeholder-shown)~.form-label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: none;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 1px solid var(--gold);
+            background-color: transparent;
+            color: var(--gold);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--gold);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            color: var(--charcoal);
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 5rem 5% 2rem;
+            background-color: var(--charcoal-light);
+            color: var(--cream);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(248, 245, 240, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+        }
+
+        .footer-nav-link {
+            margin-left: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cream);
+            transition: var(--transition);
+        }
+
+        .footer-nav-link:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+        }
+
+        .copyright,
+        .credits {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(248, 245, 240, 0.5);
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: repeat(3, auto);
+                height: auto;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: 1 / 13;
+                grid-row: 1 / 2;
+            }
+
+            .gallery-item:nth-child(2) {
+                grid-column: 1 / 7;
+                grid-row: 2 / 3;
+            }
+
+            .gallery-item:nth-child(3) {
+                grid-column: 7 / 13;
+                grid-row: 2 / 3;
+            }
+
+            .gallery-item:nth-child(4) {
+                grid-column: 1 / 13;
+                grid-row: 3 / 4;
+            }
+
+            .gallery-item {
+                height: auto;
+            }
+
+            .gallery-image {
+                height: 100%;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 992px) {
+
+            .biography-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                grid-gap: 3rem;
+            }
+
+            .bio-image {
+                order: 2;
+            }
+
+            .bio-text {
+                order: 1;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-nav {
+                margin-top: 2rem;
+                justify-content: center;
+            }
+
+            .footer-nav-link {
+                margin: 0 1rem;
+            }
+        }
+
+        @media (max-width: 981px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 40vh;
+                grid-gap: 1rem;
+                height: auto;
+                margin-top: 2rem;
+            }
+
+            .gallery-item {
+                height: 40vh;
+            }
+
+            .gallery {
+                padding: 5rem 8% 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .biography,
+            .repertoire,
+            .press,
+            .contact {
+                padding: 5rem 8% 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .social-icons {
+                justify-content: flex-start;
+            }
+        }
+    </style>
 </head>
+
 <body class="antialiased bg-paper text-ink selection:bg-oxblood selection:text-paper">
 
     <!-- Texture -->
     <div class="grain-overlay"></div>
 
     <!-- Mobile Sticky Header -->
-    <div id="main-header" class="fixed top-0 left-0 w-full px-6 md:px-8 py-4 md:py-5 z-50 flex justify-between items-center pointer-events-none transition-all duration-500">
-        <a href="#" class="font-mono text-sm md:text-base font-medium tracking-wide uppercase pointer-events-auto hover:tracking-wider transition-all text-paper">Laura Navasardian</a>
+    <div id="main-header"
+        class="fixed top-0 left-0 w-full px-6 md:px-8 py-4 md:py-5 z-50 flex justify-between items-center pointer-events-none transition-all duration-500">
+        <a href="#"
+            class="font-mono text-sm md:text-base font-medium tracking-wide uppercase pointer-events-auto hover:tracking-wider transition-all text-paper">Laura
+            Navasardian</a>
 
         <!-- Desktop Menu (Hidden on mobile) -->
         <nav class="hidden md:flex gap-6 lg:gap-8 pointer-events-auto">
-            <a href="#biography" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">About</a>
-            <a href="#agenda" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Agenda</a>
-            <a href="#repertoire" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Repertoire</a>
-            <a href="#gallery" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Media</a>
-            <a href="#press" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Press</a>
-            <a href="#contact" class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Contact</a>
+            <a href="#biography"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">About</a>
+            <a href="#agenda"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Agenda</a>
+            <a href="#repertoire"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Repertoire</a>
+            <a href="#gallery"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Media</a>
+            <a href="#press"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Press</a>
+            <a href="#contact"
+                class="font-mono text-xs uppercase tracking-wide hover:tracking-widest transition-all duration-300 hover-trigger text-paper">Contact</a>
         </nav>
 
         <!-- Hamburger Menu (Visible on mobile only) -->
-        <button id="menu-btn" class="md:hidden pointer-events-auto p-2 transition-all active:scale-95 hover-trigger text-paper">
+        <button id="menu-btn"
+            class="md:hidden pointer-events-auto p-2 transition-all active:scale-95 hover-trigger text-paper">
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -946,16 +1433,23 @@ textarea.form-control {
     </div>
 
     <!-- Navigation Overlay -->
-    <nav id="nav-overlay" class="fixed inset-0 bg-ink z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center">
+    <nav id="nav-overlay"
+        class="fixed inset-0 bg-ink z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center">
         <div class="flex flex-col space-y-6 text-center">
-            <a href="#biography" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">About</a>
-            <a href="#agenda" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Agenda</a>
-            <a href="#repertoire" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Repertoire</a>
-            <a href="#gallery" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Media</a>
-            <a href="#press" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Press</a>
-            <a href="#contact" class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-600">Contact</a>
+            <a href="#biography"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">About</a>
+            <a href="#agenda"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Agenda</a>
+            <a href="#repertoire"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Repertoire</a>
+            <a href="#gallery"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Media</a>
+            <a href="#press"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Press</a>
+            <a href="#contact"
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-600">Contact</a>
         </div>
-        
+
         <!-- Mobile Nav Footer -->
         <div class="absolute bottom-10 text-stone font-mono text-[10px] uppercase tracking-widest">
             © 2025 Laura Navasardian
@@ -963,27 +1457,36 @@ textarea.form-control {
     </nav>
 
     <main class="relative w-full">
-        
+
         <!-- HERO SECTION (Mobile Optimized) -->
         <section class="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden">
-            
+
             <!-- Background: Video with Smart Fallback -->
             <div class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
                 <!-- Video (All Devices) - Extra height for parallax -->
-                <video id="hero-video" autoplay loop muted playsinline preload="metadata" class="object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none" style="will-change: transform;">
+                <video id="hero-video" autoplay loop muted playsinline preload="metadata"
+                    class="object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none"
+                    style="will-change: transform;">
                     <source src="assets/videos/hero-bg.mp4" type="video/mp4">
                 </video>
                 <!-- Fallback Image (Hidden by default, shown if video fails) -->
-                <img id="hero-fallback" src="assets/images/laura1.jpg" class="hidden object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none" alt="Background" style="will-change: transform;">
+                <img id="hero-fallback" src="assets/images/laura1.jpg"
+                    class="hidden object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none"
+                    alt="Background" style="will-change: transform;">
                 <!-- Dark overlay (only affects light areas) -->
                 <div class="absolute inset-0 bg-ink/25 pointer-events-none" style="mix-blend-mode: multiply;"></div>
             </div>
 
             <!-- Right Aligned Text (1/3 from top) -->
-            <div data-scroll-blur class="absolute top-[33vh] right-6 md:right-16 z-20 text-right" style="will-change: filter;">
+            <div data-scroll-blur class="absolute top-[33vh] right-6 md:right-16 z-20 text-right"
+                style="will-change: filter;">
                 <div class="space-y-2 md:space-y-3">
-                    <p class="font-mono text-xl md:text-3xl lg:text-4xl font-light tracking-[0.25em] uppercase text-paper">Laura Navasardian</p>
-                    <p class="font-mono text-base md:text-xl lg:text-2xl font-light tracking-[0.35em] uppercase text-paper/70">Cellist</p>
+                    <p
+                        class="font-mono text-xl md:text-3xl lg:text-4xl font-light tracking-[0.25em] uppercase text-paper">
+                        Laura Navasardian</p>
+                    <p
+                        class="font-mono text-base md:text-xl lg:text-2xl font-light tracking-[0.35em] uppercase text-paper/70">
+                        Cellist</p>
                 </div>
                 <div class="w-16 md:w-24 h-[1px] bg-paper/30 mt-6 ml-auto"></div>
             </div>
@@ -991,13 +1494,15 @@ textarea.form-control {
             <div id="hero-text" data-scroll-blur class="relative z-10 w-full px-4" style="will-change: filter;">
                 <div class="flex flex-col items-center mix-blend-multiply">
                     <div class="reveal-text overflow-hidden w-full text-center">
-                        <h1 class="font-serif font-black text-[18vw] md:text-[13vw] leading-none tracking-tighter text-ink">
+                        <h1
+                            class="font-serif font-black text-[18vw] md:text-[13vw] leading-none tracking-tighter text-ink">
                             LAURA
                         </h1>
                     </div>
                     <div class="reveal-text overflow-hidden w-full text-center -mt-2 md:-mt-8">
                         <!-- Break-all ensures extremely long name fits on tiny screens -->
-                        <h1 class="font-serif font-italic font-normal text-[11vw] md:text-[13vw] leading-none tracking-tighter text-oxblood md:ml-32">
+                        <h1
+                            class="font-serif font-italic font-normal text-[11vw] md:text-[13vw] leading-none tracking-tighter text-oxblood md:ml-32">
                             NAVASARDIAN
                         </h1>
                     </div>
@@ -1014,24 +1519,36 @@ textarea.form-control {
         <section id="biography" class="biography">
             <h3 class="section-title" data-aos="fade-up">About</h3>
             <div class="biography-content">
-                <div class="bio-image" data-aos="fade-right" style="background-image: url('assets/images/LauraBach_8.jpg');"></div>
+                <div class="bio-image" data-aos="fade-right"
+                    style="background-image: url('assets/images/LauraBach_8.jpg');"></div>
                 <div class="bio-text" data-aos="fade-left">
                     <p class="bio-paragraph large">
-                        Laura Navasardian has become a cult figure among audiences who crave rigor and vulnerability in equal measure. Performing on a 1732 Montagnana cello, she draws a tone that feels carved from bronze yet dissolves into whispers at the edge of audibility.
+                        Laura Navasardian is a cellist and the William A. Loeb Fellow at the Curtis Institute of Music,
+                        where she studies with Gary Hoffman and Peter Wiley.
                     </p>
                     <p class="bio-paragraph">
-                        Raised between Yerevan, Berlin, and New York, Laura trained with Natalia Gutman before launching a career that now spans Wigmore Hall, Salle Pleyel, and the Walt Disney Concert Hall. Each new program is developed like a gallery installation: long-form research residencies, handwritten scores, and immersive lighting designs.
+                        A native of New York City, Laura began her cello studies at age six with Vladimir Panteleev. She
+                        advanced through the Special Music School and Juilliard Pre-College before entering Curtis in
+                        2022. Her early competition successes include first prize at the Cremona International Music
+                        Competition at age ten, the Grand Prize Virtuoso Competition in Salzburg, and semi-finalist
+                        honors at the International Tchaikovsky Competition for Young Musicians—one of the most
+                        prestigious contests in the world for emerging artists.
                     </p>
                     <div class="pull-quote" data-aos="fade-up">
-                        "I am obsessed with how a single sustained tone can eclipse the passage of time."
+                        "Her playing is both sensitive and energetic, marked by a deep commitment to engaging her
+                        audience."
                     </div>
                     <p class="bio-paragraph">
-                        Collaborators range from experimental choreographers at the Opéra national de Paris to filmmakers documenting the slow aging of gut strings. In 2025 she premieres a multi-year commission cycle pairing Kaija Saariaho, Jessie Montgomery, and visual artist Taryn Simon.
+                        Laura has performed at Carnegie Weill Recital Hall, Merkin Concert Hall, the Museo Del Violino
+                        in Cremona, and the Saal Mozarteum in Salzburg. In 2018, she performed Tchaikovsky's Rococo
+                        Variations in Berlin under the baton of Maestro David Geringas. She counts her performance with
+                        the Boston Pops at Symphony Hall among her proudest musical moments.
                     </p>
                     <p class="bio-paragraph">
-                        Away from touring, Laura records analogue sessions in Paris—collecting the crackle of tape and the hum of empty halls—to build a sonic atlas of the cello. That archive will unfold later this year as a living digital gallery.
+                        At Curtis, Laura has been a regular presence in the institute's free recital series, performing
+                        chamber works by Debussy, Mendelssohn, and Bartók, and has reached wider audiences through the
+                        Curtis Recital Series summer broadcasts.
                     </p>
-                    <div class="signature">Laura Navasardian</div>
                 </div>
             </div>
         </section>
@@ -1045,40 +1562,95 @@ textarea.form-control {
                 </div>
 
                 <div class="flex flex-col border-t border-ink">
-                    <!-- Mobile: Image is shown inline. Desktop: Image is hidden and shown on hover -->
-                    
+
                     <!-- Event 1 -->
                     <div class="group relative border-b border-ink py-8 hover-trigger">
-                        <!-- Mobile Image (Visible) -->
-                        <div class="md:hidden w-full h-48 mb-6 overflow-hidden">
-                             <img src="assets/images/LauraBach_3.jpg" class="w-full h-full object-cover grayscale">
-                        </div>
-
                         <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
-                            <div class="md:w-1/4 font-mono text-xs text-gray-500 mb-2 md:mb-0">NOV 12, 2024</div>
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">NOV 12, 2024</div>
                             <div class="md:w-2/4 mb-4 md:mb-0">
-                                <h3 class="font-serif text-3xl md:text-4xl group-hover:italic transition-all">Vienna Musikverein</h3>
-                                <p class="font-mono text-xs mt-1 text-stone">Dvořák Cello Concerto</p>
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Vienna
+                                    Musikverein</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Dvořák Cello Concerto</p>
                             </div>
                             <div class="md:w-1/4 md:text-right">
-                                <button class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">TICKETS</button>
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
                             </div>
                         </div>
-                        
-                        <!-- Desktop Hover Image -->
-                        <img src="assets/images/LauraBach_3.jpg" class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-40 object-cover opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 grayscale rotate-3 z-20 border border-paper">
                     </div>
 
                     <!-- Event 2 -->
                     <div class="group relative border-b border-ink py-8 hover-trigger">
                         <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
-                            <div class="md:w-1/4 font-mono text-xs text-gray-500 mb-2 md:mb-0">DEC 05, 2024</div>
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">DEC 05, 2024</div>
                             <div class="md:w-2/4 mb-4 md:mb-0">
-                                <h3 class="font-serif text-3xl md:text-4xl group-hover:italic transition-all">Wigmore Hall</h3>
-                                <p class="font-mono text-xs mt-1 text-stone">Solo Recital: Bach Suites</p>
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Wigmore
+                                    Hall</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Solo Recital: Bach Suites</p>
                             </div>
                             <div class="md:w-1/4 md:text-right">
-                                <button class="font-mono text-[10px] border border-ink/30 text-stone px-6 py-2 rounded-full cursor-not-allowed">SOLD OUT</button>
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">JAN 18, 2025</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Carnegie Hall – Weill Recital Hall</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Brahms Piano Trio No. 1 in B major</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 4 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">FEB 22, 2025</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Kennedy Center – Terrace Theater</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Mendelssohn String Quartet No. 2</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 5 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">MAR 14, 2025</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Jordan Hall, Boston</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Schubert String Quintet in C major</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 6 -->
+                    <div class="group relative border-b border-ink py-8 hover-trigger">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between relative z-10">
+                            <div class="md:w-1/4 font-mono text-sm text-gray-500 mb-2 md:mb-0">APR 09, 2025</div>
+                            <div class="md:w-2/4 mb-4 md:mb-0">
+                                <h3 class="font-serif text-3xl md:text-4xl event-title">Phillips Collection, DC</h3>
+                                <p class="font-mono text-sm mt-1 text-stone">Dvořák Piano Quintet in A major</p>
+                            </div>
+                            <div class="md:w-1/4 md:text-right">
+                                <button
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1089,33 +1661,41 @@ textarea.form-control {
                         <div>
                             <h3 class="font-serif text-4xl md:text-5xl italic text-ink">Latest</h3>
                         </div>
-                        <p class="font-mono text-[11px] uppercase tracking-[0.35em] text-stone mt-6 md:mt-0 md:text-right">Articles · Films · Collaborations</p>
+                        <p
+                            class="font-mono text-[11px] uppercase tracking-[0.35em] text-stone mt-6 md:mt-0 md:text-right">
+                            Articles · Films · Collaborations</p>
                     </div>
 
                     <div class="latest-grid">
-                        <article class="latest-card latest-card--hero latest-card--image" style="--card-image: url('assets/images/LauraBach_8.jpg');">
+                        <article class="latest-card latest-card--hero latest-card--image"
+                            style="--card-image: url('assets/images/LauraBach_8.jpg');">
                             <div class="latest-card-content">
                                 <span class="latest-card-label">Feature</span>
                                 <h4 class="latest-card-title">The Paris Sessions</h4>
-                                <p class="latest-card-text">Nightfall recordings tracked to tape in Montmartre; tracing the breath between takes.</p>
+                                <p class="latest-card-text">Nightfall recordings tracked to tape in Montmartre; tracing
+                                    the breath between takes.</p>
                                 <span class="latest-card-link">Read feature</span>
                             </div>
                         </article>
 
-                        <article class="latest-card latest-card--tall latest-card--image" style="--card-image: url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80');">
+                        <article class="latest-card latest-card--tall latest-card--image"
+                            style="--card-image: url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80');">
                             <div class="latest-card-content">
                                 <span class="latest-card-label">Video</span>
                                 <h4 class="latest-card-title">Resonance / Short Film</h4>
-                                <p class="latest-card-text">A five-minute study on bow pressure filmed inside Théâtre des Bouffes du Nord.</p>
+                                <p class="latest-card-text">A five-minute study on bow pressure filmed inside Théâtre
+                                    des Bouffes du Nord.</p>
                                 <span class="latest-card-link">Watch now</span>
                             </div>
                         </article>
 
-                        <article class="latest-card latest-card--wide" style="background: linear-gradient(135deg, #f9ede1, #fff);">
+                        <article class="latest-card latest-card--wide"
+                            style="background: linear-gradient(135deg, #f9ede1, #fff);">
                             <div class="latest-card-content">
                                 <span class="latest-card-label text-oxblood">Journal</span>
                                 <h4 class="latest-card-title text-ink">Field Notes from Berlin</h4>
-                                <p class="latest-card-text">Sketches from rehearsals with the Staatskapelle, including Margaret Ekpo's new duet.</p>
+                                <p class="latest-card-text">Sketches from rehearsals with the Staatskapelle, including
+                                    Margaret Ekpo's new duet.</p>
                                 <span class="latest-card-link text-oxblood">Open log</span>
                             </div>
                         </article>
@@ -1124,7 +1704,8 @@ textarea.form-control {
                             <div class="latest-card-content">
                                 <span class="latest-card-label text-oxblood">Collaboration</span>
                                 <h4 class="latest-card-title text-ink">Saariaho Residency</h4>
-                                <p class="latest-card-text">Three-city installation pairing cello, scent sculpture, and archival film.</p>
+                                <p class="latest-card-text">Three-city installation pairing cello, scent sculpture, and
+                                    archival film.</p>
                                 <span class="latest-card-link text-oxblood">Discover</span>
                             </div>
                         </article>
@@ -1270,37 +1851,113 @@ textarea.form-control {
         <!-- MEDIA -->
         <section id="gallery" class="gallery">
             <h3 class="section-title" data-aos="fade-up">Media</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up">
-                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/b7f93e1803aa8000d8f1710137365165" alt="Laura performing" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h4 class="gallery-title">Studio Session</h4>
-                        <p class="gallery-desc">Recording session for Bach's Cello Suites</p>
+
+            <!-- Media Tabs -->
+            <div class="media-tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="media-tab" data-tab="photos">Photos</button>
+                <button class="media-tab active" data-tab="videos">Videos</button>
+            </div>
+
+            <!-- Photos Content -->
+            <div class="media-content" id="photos-content">
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="fade-up">
+                        <img src="assets/images/LauraBach_3.jpg"
+                            alt="Laura performing" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-title">Studio Session</h4>
+                            <p class="gallery-desc">Recording session for Bach's Cello Suites</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/images/laura2.jpg"
+                            alt="Montagnana cello" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-title">The Instrument</h4>
+                            <p class="gallery-desc">Laura's 1732 Montagnana cello</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/images/laura3.jpg"
+                            alt="Rehearsal" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-title">From The Top program</h4>
+                            <p class="gallery-desc">live in concert</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/78d1fd25558e9e387fdef61009c86733"
+                            alt="Concert performance" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-title">Baroque Performance</h4>
+                            <p class="gallery-desc">Concert at St. Martin's Cathedral</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/221396feb71adfcf1f10bbea4ad88559" alt="Montagnana cello" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h4 class="gallery-title">The Instrument</h4>
-                        <p class="gallery-desc">Laura's 1732 Montagnana cello</p>
+                <a href="#" class="view-more hover-link" data-aos="fade-up">View Complete Gallery</a>
+            </div>
+
+            <!-- Videos Content -->
+            <div class="media-content active" id="videos-content">
+                <div class="videos-grid">
+                    <div class="video-item video-item--vertical" data-aos="fade-up">
+                        <div class="video-wrapper video-wrapper--vertical">
+                            <video class="custom-video" controls>
+                                <source src="assets/videos/Debussy-quartet.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-composer">Claude Debussy</div>
+                            <h4 class="video-piece">String Quartet in G minor, Op. 10</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/718633a4e643d87cb86ec049780afaa7" alt="Rehearsal" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h4 class="gallery-title">Practice Session</h4>
-                        <p class="gallery-desc">Private rehearsal in Paris</p>
+                    <div class="video-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/F2FN41x6EpE?modestbranding=1&rel=0&showinfo=0&color=white"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-composer">Pyotr Ilyich Tchaikovsky</div>
+                            <h4 class="video-piece">Variations on a Rococo Theme, Op. 33</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/base64_upload/78d1fd25558e9e387fdef61009c86733" alt="Concert performance" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h4 class="gallery-title">Baroque Performance</h4>
-                        <p class="gallery-desc">Concert at St. Martin's Cathedral</p>
+                    <div class="video-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/J864RtiFIb0?modestbranding=1&rel=0&showinfo=0&color=white"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-composer">Pyotr Ilyich Tchaikovsky</div>
+                            <h4 class="video-piece">Pezzo capriccioso, Op. 62</h4>
+                        </div>
+                    </div>
+                    <div class="video-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/EryQ_FcKFis?modestbranding=1&rel=0&showinfo=0&color=white"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-composer">Johann Sebastian Bach</div>
+                            <h4 class="video-piece">Cello Suite No. 6 in D major, BWV 1012</h4>
+                        </div>
+                    </div>
+                    <div class="video-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/QA6DG_jVG70?modestbranding=1&rel=0&showinfo=0&color=white"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-composer">Franz Schubert</div>
+                            <h4 class="video-piece">Sonata for Arpeggione and Piano in A minor, D. 821</h4>
+                        </div>
                     </div>
                 </div>
             </div>
-            <a href="#" class="view-more hover-link" data-aos="fade-up">View Complete Gallery</a>
         </section>
 
         <!-- PRESS -->
@@ -1308,35 +1965,20 @@ textarea.form-control {
             <h3 class="section-title" data-aos="fade-up">Press & Reviews</h3>
             <div class="reviews">
                 <div class="review" data-aos="fade-up">
-                    <div class="review-quote">Navasardian suspends time; her gut-string tone feels sculpted from bronze, yet every phrase unfolds with modern choreography. Bach sounded like it was written yesterday.</div>
+                    <div class="review-quote">Navasardian suspends time; her gut-string tone feels sculpted from bronze,
+                        yet every phrase unfolds with modern choreography. Bach sounded like it was written yesterday.
+                    </div>
                     <div class="review-source">The New York Times</div>
                 </div>
                 <div class="review" data-aos="fade-up">
-                    <div class="review-quote">Pairing Saariaho and Bach, she built a single narrative arc—rigorous, human, luminous. The audience scarcely breathed for the final ten minutes.</div>
+                    <div class="review-quote">Pairing Saariaho and Bach, she built a single narrative arc—rigorous,
+                        human, luminous. The audience scarcely breathed for the final ten minutes.</div>
                     <div class="review-source">The Guardian</div>
                 </div>
                 <div class="review" data-aos="fade-up">
-                    <div class="review-quote">Laura is a fearless architect of sound installations who happens to wield a cello. Her Shostakovich revealed layers of meaning rarely heard.</div>
+                    <div class="review-quote">Laura is a fearless architect of sound installations who happens to wield
+                        a cello. Her Shostakovich revealed layers of meaning rarely heard.</div>
                     <div class="review-source">Le Monde</div>
-                </div>
-            </div>
-            <div class="press-features">
-                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=BBC" alt="BBC" class="press-logo" data-aos="fade-up">
-                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Forbes" alt="Forbes" class="press-logo" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Classic+FM" alt="Classic FM" class="press-logo" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://via.placeholder.com/150x80/333333/FFFFFF/?text=Strad" alt="The Strad" class="press-logo" data-aos="fade-up" data-aos-delay="300">
-            </div>
-        </section>
-        <!-- MARQUEE -->
-        <section class="py-8 md:py-12 border-y border-ink bg-oxblood text-paper overflow-hidden">
-            <div class="marquee-container">
-                <div class="marquee-content flex items-center">
-                     <span class="font-serif text-4xl md:text-8xl italic px-4">"A MUSICIAN OF RARE DEPTH." — THE NEW YORK TIMES</span>
-                     <span class="font-serif text-4xl md:text-8xl italic px-4">"SCULPTING TIME." — LE MONDE</span>
-                </div>
-                <div class="marquee-content flex items-center" aria-hidden="true">
-                    <span class="font-serif text-4xl md:text-8xl italic px-4">"A MUSICIAN OF RARE DEPTH." — THE NEW YORK TIMES</span>
-                    <span class="font-serif text-4xl md:text-8xl italic px-4">"SCULPTING TIME." — LE MONDE</span>
                 </div>
             </div>
         </section>
@@ -1346,7 +1988,8 @@ textarea.form-control {
             <h3 class="section-title" data-aos="fade-up">Contact</h3>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
-                    <p class="contact-text">For bookings, residencies, or press inquiries, connect through management or send a direct note below. Responses typically arrive within 48 hours.</p>
+                    <p class="contact-text">For bookings, residencies, or press inquiries, connect through management or
+                        send a direct note below. Responses typically arrive within 48 hours.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">
@@ -1492,7 +2135,7 @@ textarea.form-control {
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
 
-            if(isMenuOpen) {
+            if (isMenuOpen) {
                 navOverlay.classList.remove('translate-y-full');
                 hamburger.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1581,7 +2224,7 @@ textarea.form-control {
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal-text').forEach(el => {
-            if(!el.querySelector('span')) {
+            if (!el.querySelector('span')) {
                 const text = el.textContent;
                 el.innerHTML = `<span>${text}</span>`;
             }
@@ -1612,6 +2255,30 @@ textarea.form-control {
             contactForm.addEventListener('submit', (event) => event.preventDefault());
         }
 
+        // Media Tabs Switching
+        const mediaTabs = document.querySelectorAll('.media-tab');
+        const mediaContents = document.querySelectorAll('.media-content');
+
+        mediaTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+
+                // Remove active class from all tabs and contents
+                mediaTabs.forEach(t => t.classList.remove('active'));
+                mediaContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const targetContent = document.getElementById(`${targetTab}-content`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+
     </script>
 </body>
+
 </html>
