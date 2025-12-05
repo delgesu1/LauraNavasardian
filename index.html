@@ -1770,8 +1770,8 @@
         <!-- REPERTOIRE (Genspark) -->
         <section id="repertoire" class="repertoire">
             <h3 class="section-title" data-aos="fade-up">Repertoire</h3>
-            <div class="repertoire-container">
-                <div class="repertoire-category open" data-aos="fade-up">
+            <div class="repertoire-container" data-aos="fade-up">
+                <div class="repertoire-category open">
                     <div class="category-header">
                         <h4 class="category-title">Concertos</h4>
                         <i class="fas fa-chevron-down category-toggle-icon"></i>
@@ -1808,7 +1808,7 @@
                     </div>
                 </div>
 
-                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="100">
+                <div class="repertoire-category">
                     <div class="category-header">
                         <h4 class="category-title">Concert Works</h4>
                         <i class="fas fa-chevron-down category-toggle-icon"></i>
@@ -1841,7 +1841,7 @@
                     </div>
                 </div>
 
-                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="200">
+                <div class="repertoire-category">
                     <div class="category-header">
                         <h4 class="category-title">Chamber Music</h4>
                         <i class="fas fa-chevron-down category-toggle-icon"></i>
@@ -1870,7 +1870,7 @@
                     </div>
                 </div>
 
-                <div class="repertoire-category" data-aos="fade-up" data-aos-delay="300">
+                <div class="repertoire-category">
                     <div class="category-header">
                         <h4 class="category-title">Contemporary Works</h4>
                         <i class="fas fa-chevron-down category-toggle-icon"></i>
@@ -2311,6 +2311,24 @@
                 offset: 150,
             });
         }
+
+        // Update URL hash on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const hashObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    if (id) {
+                        history.replaceState(null, null, `#${id}`);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(section => hashObserver.observe(section));
 
         // Repertoire accordion
         const repertoireHeaders = document.querySelectorAll('.repertoire-category .category-header');
