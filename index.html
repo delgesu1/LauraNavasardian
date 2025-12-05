@@ -143,6 +143,18 @@
             }
         }
 
+        /* Mobile Nav Menu Hover Effects */
+        #nav-overlay .nav-link {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        #nav-overlay .nav-link:hover,
+        #nav-overlay .nav-link:active {
+            color: var(--gold);
+            transform: scale(1.08);
+        }
+
         /* Mobile Defaults (Tap Feedback) */
         @media (pointer: coarse) {
             .hover-trigger:active {
@@ -212,46 +224,6 @@
         #nav-overlay {
             height: 100dvh;
             /* Use dynamic viewport height */
-            position: relative;
-        }
-
-        /* Mobile Menu Gradient Accent */
-        #nav-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold) 0%, var(--burgundy) 100%);
-            opacity: 0.6;
-        }
-
-        /* Mobile Menu Link Hover */
-        .nav-link {
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-link:hover {
-            color: var(--gold) !important;
-            transform: translateX(8px) !important;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 100%);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
         }
 
         /* Header Scroll Effect */
@@ -1510,24 +1482,25 @@
 
     <!-- Navigation Overlay -->
     <nav id="nav-overlay"
-        class="fixed inset-0 bg-ink z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center">
+        class="fixed inset-0 z-40 transform translate-y-full transition-transform duration-700 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col items-center justify-center"
+        style="background: linear-gradient(135deg, #1C1C1B 0%, #2a1a1a 50%, #1C1C1B 100%);">
         <div class="flex flex-col space-y-6 text-center">
             <a href="#biography"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-100">About</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-100">About</a>
             <a href="#agenda"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-200">Agenda</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-200">Agenda</a>
             <a href="#repertoire"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-300">Repertoire</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-300">Repertoire</a>
             <a href="#gallery"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-400">Media</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-400">Media</a>
             <a href="#press"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-500">Press</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-500">Press</a>
             <a href="#contact"
-                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 transition-all duration-500 delay-600">Contact</a>
+                class="nav-link font-serif text-4xl md:text-7xl text-paper opacity-0 translate-y-10 delay-600">Contact</a>
         </div>
 
         <!-- Mobile Nav Footer -->
-        <div class="absolute bottom-10 font-mono text-[10px] uppercase tracking-widest" style="color: var(--gold); opacity: 0.7;">
+        <div class="absolute bottom-10 font-mono text-[10px] uppercase tracking-widest" style="color: #d4af37;">
             © 2025 Laura Navasardian
         </div>
     </nav>
@@ -1960,7 +1933,7 @@
                 <div class="videos-grid">
                     <div class="video-item video-item--vertical" data-aos="fade-up">
                         <div class="video-wrapper video-wrapper--vertical">
-                            <video class="custom-video" controls poster="assets/images/debussy-and-monet.jpg">
+                            <video id="debussy-video" class="custom-video" controls>
                                 <source src="assets/videos/Debussy-quartet.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -2314,6 +2287,12 @@
                 category.classList.toggle('open');
             });
         });
+
+        // Set Debussy video poster on mobile only
+        const debussyVideo = document.getElementById('debussy-video');
+        if (debussyVideo && window.innerWidth <= 768) {
+            debussyVideo.setAttribute('poster', 'assets/images/debussy-and-monet.jpg');
+        }
 
         const contactForm = document.querySelector('#contact form');
         if (contactForm) {
