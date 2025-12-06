@@ -425,7 +425,7 @@
         .pull-quote {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 2.2rem;
+            font-size: 1.75rem;
             line-height: 1.4;
             color: var(--burgundy);
             margin: 2.5rem 0;
@@ -581,7 +581,6 @@
 
         .latest-card {
             position: relative;
-            border-radius: 1.5rem;
             padding: 1.75rem;
             overflow: hidden;
             border: 1px solid rgba(28, 28, 27, 0.08);
@@ -846,19 +845,7 @@
         }
 
         .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(28, 28, 28, 0.8), rgba(28, 28, 28, 0));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            color: var(--cream);
+            display: none;
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -1869,7 +1856,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1885,7 +1872,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1900,7 +1887,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1915,7 +1902,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1930,7 +1917,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -1945,7 +1932,7 @@
                             </div>
                             <div class="md:w-1/4 md:text-right">
                                 <button
-                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-ink md:group-hover:text-paper transition-all">More Info</button>
+                                    class="font-mono text-[10px] border border-ink px-6 py-2 rounded-full bg-ink text-paper md:bg-transparent md:text-ink md:group-hover:bg-[var(--burgundy)] md:group-hover:border-[var(--burgundy)] md:group-hover:text-white transition-all">More Info</button>
                             </div>
                         </div>
                     </div>
@@ -2013,7 +2000,7 @@
         <section id="repertoire" class="repertoire">
             <h3 class="section-title" data-aos="fade-up">Repertoire</h3>
             <div class="repertoire-container" data-aos="fade-up">
-                <div class="repertoire-category open">
+                <div class="repertoire-category">
                     <div class="category-header">
                         <h4 class="category-title">Concertos</h4>
                         <i class="fas fa-chevron-down category-toggle-icon"></i>
