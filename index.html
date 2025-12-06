@@ -2393,25 +2393,91 @@
         const heroVideo = document.getElementById('hero-video');
         const heroFallback = document.getElementById('hero-fallback');
         let videoHasPlayed = false;
+        let fallbackShown = false;
+        let playAttempts = 0;
+        const maxPlayAttempts = 5;
 
         function showFallback() {
+            if (fallbackShown) return;
+            fallbackShown = true;
             heroVideo.classList.add('hidden');
             heroFallback.classList.remove('hidden');
         }
 
-        // Fade in when video is actually playing (not just first frame)
+        function tryPlay() {
+            if (videoHasPlayed || fallbackShown) return;
+            playAttempts++;
+
+            heroVideo.play().then(() => {
+                // Success - video is playing
+            }).catch(() => {
+                // Failed - try again or wait for user interaction
+                if (playAttempts < maxPlayAttempts) {
+                    setTimeout(tryPlay, 500);
+                }
+            });
+        }
+
+        // Fade in when video is actually playing
         heroVideo.addEventListener('playing', () => {
             videoHasPlayed = true;
             heroVideo.style.opacity = '1';
         }, { once: true });
 
-        // Error fallback
-        heroVideo.addEventListener('error', showFallback);
+        // On any user interaction, try to force play
+        function onUserInteraction() {
+            if (!videoHasPlayed && !fallbackShown) {
+                heroVideo.muted = true; // Ensure muted for autoplay policy
+                tryPlay();
+            }
+            // Remove listeners once video plays
+            if (videoHasPlayed) {
+                document.removeEventListener('click', onUserInteraction);
+                document.removeEventListener('touchstart', onUserInteraction);
+                document.removeEventListener('scroll', onUserInteraction);
+                document.removeEventListener('keydown', onUserInteraction);
+            }
+        }
 
-        // Timeout fallback - only if video never started playing
+        document.addEventListener('click', onUserInteraction, { passive: true });
+        document.addEventListener('touchstart', onUserInteraction, { passive: true });
+        document.addEventListener('scroll', onUserInteraction, { passive: true, once: true });
+        document.addEventListener('keydown', onUserInteraction, { passive: true });
+
+        // If video pauses unexpectedly (not from user), restart it
+        heroVideo.addEventListener('pause', () => {
+            // Only restart if we've played before and tab is visible
+            // Small delay to avoid conflicts with browser behavior
+            if (videoHasPlayed && !document.hidden) {
+                setTimeout(() => {
+                    if (heroVideo.paused && !document.hidden) {
+                        heroVideo.play().catch(() => {});
+                    }
+                }, 100);
+            }
+        });
+
+        // Handle page visibility - resume when tab visible (only if was playing before)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && videoHasPlayed && heroVideo.paused) {
+                heroVideo.play().catch(() => {});
+            }
+        });
+
+        // Initial play attempt
+        tryPlay();
+
+        // Only show fallback after extended timeout AND no video progress
         setTimeout(() => {
-            if (!videoHasPlayed && heroVideo.paused) showFallback();
-        }, 3000);
+            if (!videoHasPlayed && heroVideo.paused && playAttempts >= maxPlayAttempts) {
+                showFallback();
+            }
+        }, 5000);
+
+        // Ultimate fallback - if still not playing after 10s, give up
+        setTimeout(() => {
+            if (!videoHasPlayed) showFallback();
+        }, 10000);
 
         // Menu Logic
         const menuBtn = document.getElementById('menu-btn');
