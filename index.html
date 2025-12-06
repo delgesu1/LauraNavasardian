@@ -2369,6 +2369,13 @@
 
         sections.forEach(section => hashObserver.observe(section));
 
+        // Clear hash when at top of page (hero section)
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 100 && window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+        }, { passive: true });
+
         // Repertoire accordion
         const repertoireHeaders = document.querySelectorAll('.repertoire-category .category-header');
         repertoireHeaders.forEach(header => {
