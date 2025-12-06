@@ -2210,11 +2210,17 @@
         // Hero Video Fallback Detection & Fade In
         const heroVideo = document.getElementById('hero-video');
         const heroFallback = document.getElementById('hero-fallback');
+        let videoHasPlayed = false;
 
         function showFallback() {
             heroVideo.classList.add('hidden');
             heroFallback.classList.remove('hidden');
         }
+
+        // Track if video ever plays successfully
+        heroVideo.addEventListener('playing', () => {
+            videoHasPlayed = true;
+        }, { once: true });
 
         // Fade in immediately when video can play
         if (heroVideo.readyState >= 3) {
@@ -2228,9 +2234,9 @@
         // Error fallback
         heroVideo.addEventListener('error', showFallback);
 
-        // Timeout fallback - if not playing within 3s, show image
+        // Timeout fallback - only if video never started playing
         setTimeout(() => {
-            if (heroVideo.paused) showFallback();
+            if (!videoHasPlayed && heroVideo.paused) showFallback();
         }, 3000);
 
         // Menu Logic
