@@ -2217,19 +2217,11 @@
             heroFallback.classList.remove('hidden');
         }
 
-        // Track if video ever plays successfully
+        // Fade in when video is actually playing (not just first frame)
         heroVideo.addEventListener('playing', () => {
             videoHasPlayed = true;
-        }, { once: true });
-
-        // Fade in immediately when video can play
-        if (heroVideo.readyState >= 3) {
             heroVideo.style.opacity = '1';
-        } else {
-            heroVideo.addEventListener('canplay', () => {
-                heroVideo.style.opacity = '1';
-            }, { once: true });
-        }
+        }, { once: true });
 
         // Error fallback
         heroVideo.addEventListener('error', showFallback);
