@@ -837,9 +837,9 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             grid-gap: 20px;
-            height: 80vh;
+            height: 110vh;
             margin-top: 5rem;
         }
 
@@ -855,8 +855,8 @@
         }
 
         .gallery-item:nth-child(2) {
-            grid-column: 7 / 10;
-            grid-row: 1 / 2;
+            grid-column: 7 / 13;
+            grid-row: 2 / 3;
         }
 
         .gallery-item:nth-child(3) {
@@ -865,8 +865,13 @@
         }
 
         .gallery-item:nth-child(4) {
-            grid-column: 7 / 13;
-            grid-row: 2 / 3;
+            grid-column: 1 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: 7 / 10;
+            grid-row: 1 / 2;
         }
 
         .gallery-image {
@@ -1198,6 +1203,25 @@
             margin-bottom: 2rem;
         }
 
+        .contact-intro {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+            color: rgba(248, 245, 240, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            line-height: 1.3;
+            color: var(--cream);
+            margin-bottom: 2rem;
+        }
+
         .contact-details {
             display: flex;
             flex-direction: column;
@@ -1429,7 +1453,12 @@
             }
 
             .gallery-item:nth-child(4) {
-                grid-column: 1 / 13;
+                grid-column: 1 / 5;
+                grid-row: 3 / 4;
+            }
+
+            .gallery-item:nth-child(5) {
+                grid-column: 5 / 13;
                 grid-row: 3 / 4;
             }
 
@@ -1508,6 +1537,15 @@
 
             .gallery-item {
                 height: 40vh;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(2),
+            .gallery-item:nth-child(3),
+            .gallery-item:nth-child(4),
+            .gallery-item:nth-child(5) {
+                grid-column: 1 / -1;
+                grid-row: auto;
             }
 
             .gallery {
@@ -2214,8 +2252,11 @@
                             <p class="gallery-desc">recording session</p>
                         </div>
                     </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                        <img src="assets/images/Laura-bw8.jpg"
+                            alt="Laura Navasardian portrait" class="gallery-image">
+                    </div>
                 </div>
-                <a href="#" class="view-more hover-link" data-aos="fade-up">View Complete Gallery</a>
             </div>
 
             <!-- Videos Content -->
@@ -2321,43 +2362,8 @@
             <h3 class="section-title" data-aos="fade-up">Contact</h3>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
-                    <p class="contact-text">For bookings, residencies, or press inquiries, connect through management or
-                        send a direct note below. Responses typically arrive within 48 hours.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-info-text">
-                                <span>Management Office</span>
-                                HarrisonParrott · 25 Heddon Street, London
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-info-text">
-                                <span>Email</span>
-                                <a href="mailto:studio@lauranavasardian.com">studio@lauranavasardian.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-info-text">
-                                <span>Phone</span>
-                                +44 (0)20 1234 9876
-                            </div>
-                        </div>
-                    </div>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon hover-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon hover-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon hover-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon hover-link"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <p class="contact-intro">For concert engagements, festival appearances, residencies, collaborations, and press inquiries—</p>
+                    <p class="contact-cta">let's connect.</p>
                 </div>
                 <div class="contact-form" data-aos="fade-left">
                     <form>
