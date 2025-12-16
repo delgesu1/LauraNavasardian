@@ -1754,7 +1754,52 @@
                 max-width: 95vw;
             }
         }
+
+        /* Screen reader only - visually hidden but accessible */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Laura Navasardian",
+        "jobTitle": "Cellist",
+        "description": "Award-winning cellist and William A. Loeb Fellow at Curtis Institute of Music. Performing chamber works and concertos at Carnegie Hall, Wigmore Hall, and beyond.",
+        "url": "https://laura-cello.vercel.app",
+        "image": "https://laura-cello.vercel.app/assets/images/LauraBach_3.jpg",
+        "sameAs": [
+            "https://www.instagram.com/lauranavasardian",
+            "https://www.youtube.com/@lauranavasardian"
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Curtis Institute of Music"
+        },
+        "award": "William A. Loeb Fellow",
+        "performerIn": [
+            {
+                "@type": "MusicVenue",
+                "name": "Carnegie Hall"
+            },
+            {
+                "@type": "MusicVenue",
+                "name": "Wigmore Hall"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body class="antialiased bg-paper text-ink selection:bg-oxblood selection:text-paper">
@@ -1845,12 +1890,15 @@
                     <source src="assets/videos/hero-bg.mp4" type="video/mp4">
                 </video>
                 <!-- Fallback Image (Hidden by default, shown if video fails) -->
-                <img id="hero-fallback" src="assets/images/laura1.jpg"
+                <img id="hero-fallback" src="assets/images/LauraBach_3.jpg"
                     class="hidden object-cover w-full h-[120%] absolute top-0 left-0 pointer-events-none"
                     alt="Background" style="will-change: transform;">
                 <!-- Dark overlay (only affects light areas) -->
-                <div class="absolute inset-0 bg-ink/25 pointer-events-none" style="mix-blend-mode: multiply;"></div>
+                <div class="absolute inset-0 bg-ink/20 pointer-events-none" style="mix-blend-mode: multiply;"></div>
             </div>
+
+            <!-- H1 for SEO (visually hidden) -->
+            <h1 class="sr-only">Laura Navasardian - Award-Winning Cellist</h1>
 
             <!-- Right Aligned Text (1/3 from top) -->
             <div data-scroll-blur class="absolute top-[33vh] right-6 md:right-16 z-20 text-right hero-fade-in-delay-1"
@@ -1874,7 +1922,7 @@
 
         <!-- ABOUT -->
         <section id="biography" class="biography">
-            <h3 class="section-title" data-aos="fade-up">About</h3>
+            <h2 class="section-title" data-aos="fade-up">About</h2>
             <div class="biography-content">
                 <div class="bio-image" data-aos="fade-right"
                     style="background-image: url('assets/images/Laura-bw8.jpg');"></div>
@@ -2080,7 +2128,7 @@
 
         <!-- REPERTOIRE (Genspark) -->
         <section id="repertoire" class="repertoire">
-            <h3 class="section-title" data-aos="fade-up">Repertoire</h3>
+            <h2 class="section-title" data-aos="fade-up">Repertoire</h2>
             <div class="repertoire-container" data-aos="fade-up">
                 <div class="repertoire-category">
                     <div class="category-header">
@@ -2216,7 +2264,7 @@
 
         <!-- MEDIA -->
         <section id="gallery" class="gallery">
-            <h3 class="section-title" data-aos="fade-up">Media</h3>
+            <h2 class="section-title" data-aos="fade-up">Media</h2>
 
             <!-- Media Tabs -->
             <div class="media-tabs" data-aos="fade-up" data-aos-delay="100">
@@ -2244,7 +2292,7 @@
                             alt="Laura Navasardian with cello" class="gallery-image">
                     </div>
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                        <img src="assets/images/laura1.jpg"
+                        <img src="assets/images/laura-church1 small.jpeg"
                             alt="Recording session" class="gallery-image">
                         <div class="gallery-overlay">
                             <h4 class="gallery-title">Recording Session</h4>
@@ -2334,7 +2382,7 @@
 
         <!-- HIDDEN: PRESS SECTION (uncomment to restore)
         <section id="press" class="press">
-            <h3 class="section-title" data-aos="fade-up">Press & Reviews</h3>
+            <h2 class="section-title" data-aos="fade-up">Press & Reviews</h2>
             <div class="reviews">
                 <div class="review" data-aos="fade-up">
                     <div class="review-quote">Navasardian suspends time; her gut-string tone feels sculpted from bronze,
@@ -2358,13 +2406,13 @@
 
         <!-- CONTACT -->
         <section id="contact" class="contact">
-            <h3 class="section-title" data-aos="fade-up">Contact</h3>
+            <h2 class="section-title" data-aos="fade-up" data-aos-offset="50">Contact</h2>
             <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
+                <div class="contact-info" data-aos="fade-right" data-aos-offset="50">
                     <p class="contact-intro">For concert engagements, festival appearances, residencies, collaborations, and press inquiries—</p>
                     <p class="contact-cta">let's connect.</p>
                 </div>
-                <div class="contact-form" data-aos="fade-left">
+                <div class="contact-form" data-aos="fade-left" data-aos-offset="50">
                     <form>
                         <div class="form-group">
                             <input type="text" class="form-control" id="name" placeholder=" " required>
@@ -2449,12 +2497,12 @@
         function showFallback() {
             if (fallbackShown) return;
             fallbackShown = true;
-            heroVideo.classList.add('hidden');
+            // Show fallback behind video (don't hide video - let it fade in over fallback if it loads)
             heroFallback.classList.remove('hidden');
         }
 
         function tryPlay() {
-            if (videoHasPlayed || fallbackShown) return;
+            if (videoHasPlayed) return;
             playAttempts++;
 
             heroVideo.play().then(() => {
@@ -2467,7 +2515,7 @@
             });
         }
 
-        // Fade in when video is actually playing
+        // Fade in when video is actually playing (will smoothly cover fallback)
         heroVideo.addEventListener('playing', () => {
             videoHasPlayed = true;
             heroVideo.style.opacity = '1';
@@ -2475,7 +2523,7 @@
 
         // On any user interaction, try to force play
         function onUserInteraction() {
-            if (!videoHasPlayed && !fallbackShown) {
+            if (!videoHasPlayed) {
                 heroVideo.muted = true; // Ensure muted for autoplay policy
                 tryPlay();
             }
@@ -2516,17 +2564,11 @@
         // Initial play attempt
         tryPlay();
 
-        // Only show fallback after extended timeout AND no video progress
-        setTimeout(() => {
-            if (!videoHasPlayed && heroVideo.paused && playAttempts >= maxPlayAttempts) {
-                showFallback();
-            }
-        }, 5000);
-
-        // Ultimate fallback - if still not playing after 10s, give up
+        // Show fallback after 1 second if video hasn't started playing
+        // Video will continue trying to load and will fade in over fallback if successful
         setTimeout(() => {
             if (!videoHasPlayed) showFallback();
-        }, 10000);
+        }, 1000);
 
         // Menu Logic
         const menuBtn = document.getElementById('menu-btn');

@@ -1,0 +1,7 @@
+# robots.txt for Laura Navasardian
+# https://laura-cello.vercel.app
+
+User-agent: *
+Allow: /
+
+Sitemap: https://laura-cello.vercel.app/sitemap.xml
